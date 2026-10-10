@@ -1,0 +1,18 @@
+import { defineConfig } from 'vite';
+import react from '@vitejs/plugin-react';
+import tailwindcss from '@tailwindcss/vite';
+import { fileURLToPath } from 'node:url';
+const resolve = (path: string) => fileURLToPath(new URL(path, import.meta.url));
+export default defineConfig({
+  root: resolve('./preview'),
+  base: '/axis-displays/',
+  publicDir: resolve('./public'),
+  plugins: [react(), tailwindcss()],
+  define: { 'import.meta.env.VITE_DESIGN_PREVIEW': JSON.stringify('true') },
+  resolve: { alias: [
+    { find: '@/lib/quotes.functions', replacement: resolve('./preview/server-stub.ts') },
+    { find: '@tanstack/react-start', replacement: resolve('./preview/server-stub.ts') },
+    { find: '@', replacement: resolve('./src') },
+  ] },
+  build: { outDir: resolve('./dist-preview'), emptyOutDir: true },
+});
