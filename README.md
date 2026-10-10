@@ -8,7 +8,7 @@ The GitHub Pages version is for design review. Quote submission and admin requir
 
 ## Development
 
-- `npm ci`
+- `npx --yes bun@1.4.3 install --frozen-lockfile`
 - `npm run dev` — full application; current landing design at `/concept`
 - `npm run build:preview` — standalone GitHub Pages build
 - `npm run build` — full server application
