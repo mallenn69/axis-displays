@@ -105,3 +105,52 @@
 @media(max-width:540px){.dc-quote-wrap .form-submit{width:100%;min-width:0}.dc-quote-wrap .quote-form-grid{gap:16px}}
 
 .preview-form-notice{padding:14px 18px;margin-bottom:22px!important;border:1px solid #ffffff25;color:#bccce0!important;font-size:14px}
+
+/* Keep each product overview and its controls within a comfortable viewport. */
+html:has(.dc-site){scroll-padding-top:0}
+.dc-site #inside,.dc-site #possibilities{scroll-margin-top:0}
+.dc-panel{padding:28px 4vw}
+.dc-panel>.dc-section-label,.dc-immersion>.dc-section-label{padding-bottom:14px}
+.dc-panel-layout{padding-top:24px;align-items:center}
+.dc-panel h2{font-size:clamp(42px,5vw,68px)}
+.dc-panel-copy>p{margin-top:16px}
+.dc-tabs{margin-top:20px}
+.dc-description{margin-top:18px;min-height:72px}
+.dc-panel-visual{min-height:0}
+.dc-panel-anchor{height:clamp(260px,calc(100svh - 350px),400px)}
+.dc-model-label{padding:14px}
+.dc-spec-strip{padding:22px 4vw}
+.dc-spec-strip>div{margin-top:16px}
+.dc-spec-strip strong{font-size:clamp(28px,3vw,40px)}
+.dc-spec-strip article>span{margin-top:7px}
+.dc-spec-strip>p{margin-top:16px}
+.dc-immersion{padding:28px 4vw}
+.dc-immersion-heading{margin:20px 0;gap:24px}
+.dc-site .dc-immersion h2{font-size:clamp(32px,4vw,56px)}
+.dc-install-image{height:clamp(200px,calc(100svh - 310px),520px)}
+.dc-project-controls button{min-height:48px;padding:14px 20px}
+@media(max-width:800px){
+ .dc-panel-layout{gap:20px}
+ .dc-panel h2{font-size:42px}
+ .dc-panel h2>br{display:none}
+ .dc-panel h2>span{margin-left:.2em}
+ .dc-panel-copy>p{margin-top:12px}
+ .dc-tabs{margin-top:12px}
+ .dc-tabs button{padding-top:12px;padding-bottom:12px}
+ .dc-description{margin-top:12px;min-height:56px}
+ .dc-panel-anchor{height:240px}
+ .dc-immersion-heading>p{margin-top:12px}
+ .dc-install-image{height:clamp(200px,calc(100svh - 350px),420px)}
+}
+@media(max-width:500px){
+ .dc-panel,.dc-immersion{padding:24px 6vw}
+ .dc-panel-layout{padding-top:18px;gap:16px}
+ .dc-panel-anchor{height:210px}
+ .dc-spec-strip{padding:20px 6vw}
+ .dc-spec-strip>div{gap:18px 14px}
+ .dc-spec-strip strong{font-size:28px}
+ .dc-spec-strip article>span{font-size:9px}
+ .dc-project-controls button{padding:12px 8px;font-size:11px;gap:6px}
+ .dc-install-overlay{left:16px;bottom:20px}
+ .dc-motion-toggle{right:16px;bottom:16px}
+}

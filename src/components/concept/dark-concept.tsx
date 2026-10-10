@@ -108,9 +108,7 @@ export function DarkConcept() {
                   {darkConcept.panel.title}
                   <br />
                   <span>
-                    {darkConcept.panel.accent[0]}
-                    <br />
-                    {darkConcept.panel.accent[1]}
+                    {darkConcept.panel.accent.join(" ")}
                   </span>
                 </h2>
                 <p>{darkConcept.panel.description}</p>
