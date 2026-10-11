@@ -160,3 +160,12 @@ html:has(.dc-site){scroll-padding-top:0}
 .dc-panel-anchor .scene-canvas-local{position:absolute;inset:0;overflow:hidden;transition:none;touch-action:pan-y}
 
 .dc-layer-benefits{list-style:none;margin:18px 0 0;padding:0;display:grid;gap:12px}.dc-layer-benefits li{border-left:2px solid #5689ed;padding-left:12px}.dc-layer-benefits strong{display:block;font-size:13px;font-weight:600;color:#e7ebed}.dc-layer-benefits span{display:block;margin-top:4px;font-size:12px;line-height:1.5;color:#929ba7}
+
+.dc-panel-callouts{position:absolute;inset:0;z-index:2;pointer-events:none;animation:dc-callouts-in .35s 1.5s both}
+.dc-panel-callouts svg{position:absolute;width:100%;height:100%;overflow:hidden}
+.dc-panel-callouts line{stroke:#8fb7ff;stroke-width:1;opacity:.7}.dc-panel-callouts circle{fill:#b8d1ff}
+.dc-panel-callout{position:absolute;width:42%;text-align:center;padding:8px 5px;background:#090c10e8;border:1px solid #5689ed50;color:#dce8ff;font-size:11px;line-height:1.4}
+.dc-panel-callout-0{left:1%;top:3%}.dc-panel-callout-1{right:1%;top:3%}.dc-panel-callout-2{right:1%;bottom:3%}
+@keyframes dc-callouts-in{from{opacity:0}to{opacity:1}}
+@media(max-width:767px){.dc-panel-anchor.dc-panel-exploded{height:300px}.dc-panel-callout{font-size:10px}}
+@media(prefers-reduced-motion:reduce){.dc-panel-callouts{animation:none}}

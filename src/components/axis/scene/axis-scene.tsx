@@ -134,6 +134,11 @@ function Rig({ mobile, local, vigRef }: { mobile: boolean; local: boolean; vigRe
   const tw = useRef({ key: '', start: 0, eTarget: 0, eStart: 0, eCur: new Float32Array(7), eFrom: new Float32Array(7) }).current;
   const S = useRef({ powerStart: -1, pulseStart: -10, lastStep: -1, wallStart: -1, landed: new Array<boolean>(32).fill(false), flash: new Float32Array(32), p: new Float32Array(32), vis: new Float32Array(32).fill(1), tgt: Array.from({ length: 32 }, () => new THREE.Vector3()), center: new THREE.Vector3(), cell: 0.4, shape: 0, shapeAt: 0, swept: false, prevE: 0, conn: 0, popDone: false, floorY: -2, floorO: 0, vig: 0.55, ringX: 0 }).current;
 
+  const calloutPoint = useMemo(() => new THREE.Vector3(), []);
+  const calloutNodes = useRef<{ line: SVGLineElement; dot: SVGCircleElement }[]>([]);
+  useEffect(() => {
+    calloutNodes.current = Array.from(document.querySelectorAll<SVGLineElement>('[data-panel-leader]')).map((line, i) => ({ line, dot: document.querySelector<SVGCircleElement>(`[data-panel-dot="${i}"]`)! }));
+  }, [snap.step]);
   useFrame((state, rawDt) => {
     const dt = Math.min(rawDt, 0.05), t = state.clock.elapsedTime, now = performance.now() / 1000;
     const { section, step, stepChangedAt } = sceneState.current; const since = now - stepChangedAt / 1000;
@@ -217,6 +222,23 @@ function Rig({ mobile, local, vigRef }: { mobile: boolean; local: boolean; vigRe
     if (cabA.current) { cabA.current.position.z = zc; cabA.current.scale.z = Math.max(0.02, zc - zh); }
     if (cabB.current) { cabB.current.position.z = zh; cabB.current.scale.z = Math.max(0.02, zh - zp); }
     if (cabC.current) { cabC.current.position.z = zh; cabC.current.scale.z = Math.max(0.02, zh - zb); }
+
+    // Project actual module positions into the product frame so leaders follow the explosion.
+    if (section === 'story' && step === 4 && calloutNodes.current.length) {
+      const rect = anchors.current['story'];
+      const width = local ? state.size.width : rect?.width;
+      const height = local ? state.size.height : rect?.height;
+      const targets = [maskRefs.current[0], maskRefs.current[1], magRefs.current[2]];
+      if (width && height) targets.forEach((target, i) => {
+        const nodes = calloutNodes.current[i]; if (!target || !nodes) return;
+        target.updateWorldMatrix(true, false);
+        calloutPoint.set(0, 0, 0); target.localToWorld(calloutPoint); calloutPoint.project(state.camera);
+        const x = (calloutPoint.x + 1) / 2 * state.size.width - (local ? 0 : rect!.left);
+        const y = (1 - calloutPoint.y) / 2 * state.size.height - (local ? 0 : rect!.top);
+        nodes.line.setAttribute('x2', String(x)); nodes.line.setAttribute('y2', String(y));
+        nodes.dot.setAttribute('cx', String(x)); nodes.dot.setAttribute('cy', String(y));
+      });
+    }
 
     /* status LEDs */
     const powered = ledShared.uPower.value > 0.9;
