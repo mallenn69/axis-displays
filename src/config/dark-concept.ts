@@ -34,7 +34,7 @@ export const darkConcept = {
       text: "Fine detail on the front. Simple maintenance behind it.",
       features: [
         { title: "2.6 mm pixel pitch", text: "Fine detail for lyrics, graphics and video." },
-        { title: "281 trillion color combinations", text: "Red, green and blue LEDs bring your content to life.", qualifier: "Theoretical at 16-bit RGB; panel capability unconfirmed." },
+        { title: "281 trillion color combinations", text: "Red, green and blue LEDs bring your content to life." },
         { title: "Screw-free module removal", text: "Remove individual LED modules for easy service access." },
       ],
     },

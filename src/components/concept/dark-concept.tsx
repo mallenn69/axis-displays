@@ -140,7 +140,7 @@ export function DarkConcept() {
                   )}
                   {view === 2 && enabled === true && <div className="dc-panel-callouts">
                     <svg aria-hidden="true">{views[2]!.features!.map((feature, i) => <g key={feature.title}><line data-panel-leader={i} x1={i === 0 ? '22%' : '78%'} y1={i === 2 ? '85%' : '17%'} x2={i === 0 ? '22%' : '78%'} y2={i === 2 ? '85%' : '17%'}/><circle data-panel-dot={i} r="3" /></g>)}</svg>
-                    {views[2]!.features!.map((feature, i) => <div className={`dc-panel-callout dc-panel-callout-${i}`} key={feature.title}><strong>{feature.title}</strong>{feature.qualifier && <small>{feature.qualifier}</small>}</div>)}
+                    {views[2]!.features!.map((feature, i) => <div className={`dc-panel-callout dc-panel-callout-${i}`} key={feature.title}><strong>{feature.title}</strong></div>)}
                   </div>}
                 </div>
                 <span className="dc-corner dc-tl">+</span>
