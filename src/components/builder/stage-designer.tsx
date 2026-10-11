@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { ArrowUpRight, ArrowLeft, Plus, Minus, Play, Pause, Check } from "lucide-react";
 import logo from "@/assets/axis-displays-logo.png";
 import {
+  studioCopy,
   simpleDefault,
   simpleSections,
   defaultDesign,
@@ -215,7 +216,7 @@ export function StageDesigner() {
           <h1>{final ? "See it come together." : "Your wall. Made simple."}</h1>
           <p>
             {final
-              ? "Choose a look. Then get a quote for your design."
+              ? studioCopy.graphicsIntro
               : "Set the size. Add a little more if you want."}
           </p>
         </div>
@@ -331,7 +332,8 @@ export function StageDesigner() {
                 <button className="simple-back" onClick={() => setFinal(false)}>
                   <ArrowLeft size={15} /> Edit layout
                 </button>
-                <h2>Pick a look.</h2>
+                <h2>{studioCopy.graphicsTitle}</h2>
+                <p className="simple-note">{studioCopy.graphicsNote}</p>
                 <div className="simple-visuals">
                   {visuals.map((v) => (
                     <button

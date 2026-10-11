@@ -1,5 +1,8 @@
 import { z } from "zod";
 export const studioCopy = {
+  graphicsTitle: "Preview different graphics.",
+  graphicsIntro: "See how different graphics look on your layout, then request a quote.",
+  graphicsNote: "These graphics are just for visualization. You can display your own content on your wall.",
   title: "Make room for your vision.",
   subtitle: "Start with a layout. Make it yours. We’ll handle the details.",
   quote: "Get my quote",
