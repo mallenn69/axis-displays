@@ -8,6 +8,7 @@ import "./dark-concept.css";
 import { useScrollMotion } from "./use-scroll-motion";
 import { LandingExpansion } from "./landing-expansion";
 import { darkConcept } from "@/config/dark-concept";
+import { InstallMap } from "./install-map";
 const scenes: [string, "story"][] = [["inside", "story"]];
 export function DarkConcept() {
   const page = useRef<HTMLDivElement>(null);
@@ -100,6 +101,7 @@ export function DarkConcept() {
               {videoPaused ? <Play size={17} /> : <Pause size={17} />}
             </button>
           </section>
+          <InstallMap />
           <section className="dc-panel" id="inside">
             <div className="dc-section-label">
               <span>01 / THE HARDWARE</span>

@@ -18,5 +18,5 @@ it('only confirms explicit backend success and preserves the retry identifier',a
  vi.stubGlobal('fetch',fetch);
  await expect(sendBuilderInquiry('/endpoint',data)).rejects.toThrow();
  await expect(sendBuilderInquiry('/endpoint',data)).resolves.toBeUndefined();
- expect(fetch.mock.calls[0][1].body.get('submission_id')).toBe(fetch.mock.calls[1][1].body.get('submission_id'));
+ expect(fetch.mock.calls[0]![1].body.get('submission_id')).toBe(fetch.mock.calls[1]![1].body.get('submission_id'));
 });
