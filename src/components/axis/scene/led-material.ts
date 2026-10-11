@@ -22,14 +22,15 @@ void main(){
   float w2 = sin(g.y*9.0 + uTime*0.9 + g.x*3.0 - uTime*0.4);
   vec3 base = mix(vec3(0.01,0.05,0.35), vec3(0.15,0.55,1.4), 0.5+0.5*w1);
   base += vec3(0.6,0.8,1.2) * pow(max(0.0,w2), 12.0) * 0.8;
-  base *= 0.85 + 0.15*sin(uTime*6.0 + id.x*12.9898 + id.y*78.233);
+  // Avoid per-pixel temporal noise that shimmers on small screens.
+  base *= 0.95;
   float on = smoothstep(g.x - 0.08, g.x, uPower*1.12 - 0.04);
   vec3 dots = vec3(
     (1.0-smoothstep(0.07,0.15,length(f-vec2(0.28,0.5)))),
     (1.0-smoothstep(0.07,0.15,length(f-vec2(0.50,0.5)))),
     (1.0-smoothstep(0.07,0.15,length(f-vec2(0.72,0.5)))));
   vec3 cluster = dots * base * 3.0;
-  float px = fwidth(cuv.x);
+  float px = max(fwidth(cuv.x), fwidth(cuv.y));
   float detail = 1.0 - smoothstep(0.12, 0.45, px);
   vec3 col = mix(base*0.75, cluster, detail);
   col += vec3(0.25,0.55,1.6) * exp(-pow((g.x-uPulsePos)*7.0, 2.0)) * uPulse;

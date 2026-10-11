@@ -154,3 +154,7 @@ html:has(.dc-site){scroll-padding-top:0}
  .dc-install-overlay{left:16px;bottom:20px}
  .dc-motion-toggle{right:16px;bottom:16px}
 }
+
+/* Keep mobile WebGL in document flow, independent of browser toolbar resizing. */
+.dc-panel-anchor{position:relative;isolation:isolate}
+.dc-panel-anchor .scene-canvas-local{position:absolute;inset:0;overflow:hidden;transition:none;touch-action:pan-y}

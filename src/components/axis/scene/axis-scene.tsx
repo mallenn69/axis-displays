@@ -1,3 +1,4 @@
+import { createPortal } from 'react-dom';
 import { useEffect, useMemo, useRef, useState, type ReactNode } from 'react';
 import * as THREE from 'three';
 import { Canvas, useFrame, useThree, type ThreeEvent } from '@react-three/fiber';
@@ -55,10 +56,11 @@ function Part({ name, size, ctl, children, label, labelPos, side = 'up', order =
 }
 
 /* ---------- the rig: one persistent panel + wall copies ---------- */
-function Rig({ mobile, vigRef }: { mobile: boolean; vigRef: React.RefObject<VignetteEffect | null> }) {
+function Rig({ mobile, local, vigRef }: { mobile: boolean; local: boolean; vigRef: React.RefObject<VignetteEffect | null> }) {
   const snap = useSceneState();
   const anchors = useRef<Record<string, DOMRect>>({});
   useEffect(() => {
+    if (local) return;
     // Layout reads belong to scroll/resize, not every WebGL frame.
     let frame = 0;
     const measure = () => {
@@ -74,7 +76,7 @@ function Rig({ mobile, vigRef }: { mobile: boolean; vigRef: React.RefObject<Vign
     window.addEventListener('scroll', schedule, { passive: true });
     window.addEventListener('resize', schedule);
     return () => { cancelAnimationFrame(frame); observer.disconnect(); window.removeEventListener('scroll', schedule); window.removeEventListener('resize', schedule); };
-  }, [snap.section, mobile]);
+  }, [snap.section, mobile, local]);
   const [hover, setHover] = useState<string | null>(null);
   const stepRef = useRef(0); stepRef.current = snap.section === 'story' ? snap.step : -1;
   const ctl: HoverCtl = { hover, setHover, stepRef };
@@ -144,7 +146,7 @@ function Rig({ mobile, vigRef }: { mobile: boolean; vigRef: React.RefObject<Vign
     ledShared.uPower.value = S.powerStart < 0 ? 0 : clamp((now - S.powerStart) / 1.4);
     if (section === 'story' && step !== S.lastStep) { S.lastStep = step; S.popDone = false; }
 
-    const a = section === 'none' ? null : readAnchor(anchors.current[section], vp);
+    const a = section === 'none' ? null : local ? { x: 0, y: 0, w: vp.width, h: vp.height } : readAnchor(anchors.current[section], vp);
     const wallMode = (section === 'story' && step === 6) || section === 'build';
     if (section === 'build' && now - S.shapeAt > 3) { S.shape = (S.shape + 1) % SHAPES.length; S.shapeAt = now; }
     if (section !== 'build') S.shape = 0;
@@ -373,8 +375,10 @@ export default function AxisScene() {
   useEffect(() => { const update = () => setVisible(!document.hidden); document.addEventListener('visibilitychange', update); update(); return () => document.removeEventListener('visibilitychange', update); }, []);
   useEffect(() => { if (section !== 'none') { setLoop(true); return; } const id = window.setTimeout(() => setLoop(false), 1500); return () => window.clearTimeout(id); }, [section]);
   const vigRef = useRef<VignetteEffect>(null);
-  return <><div className="scene-labels" ref={el => { (labelPortal as { current: HTMLElement | null }).current = el; }} aria-hidden="true" /><div className={`scene-canvas ${loop ? '' : 'idle'}`} aria-hidden="true">
-    <Canvas onCreated={({ gl }) => { gl.domElement.addEventListener('webglcontextlost', () => setScene({ enabled: false, ready: false }), { once: true }); }} frameloop="demand" dpr={1} camera={{ position: [0, 0, 8], fov: 35, near: 0.1, far: 60 }} gl={{ antialias: !mobile, powerPreference: mobile ? 'low-power' : 'default' }} eventSource={document.body} eventPrefix="client">
+  const anchor = mobile ? document.querySelector<HTMLElement>('.dc-panel-anchor') : null;
+  const local = Boolean(anchor);
+  const scene = <><div className="scene-labels" ref={el => { (labelPortal as { current: HTMLElement | null }).current = el; }} aria-hidden="true" /><div className={`scene-canvas ${local ? 'scene-canvas-local' : ''} ${loop ? '' : 'idle'}`} aria-hidden="true">
+    <Canvas onCreated={({ gl }) => { gl.domElement.addEventListener('webglcontextlost', () => setScene({ enabled: false, ready: false }), { once: true }); }} frameloop="demand" dpr={mobile ? [1, 1.5] : 1} camera={{ position: [0, 0, 8], fov: 35, near: 0.1, far: 60 }} gl={{ antialias: true, powerPreference: mobile ? 'low-power' : 'default' }} eventSource={anchor ?? document.body} eventPrefix="client">
       <RenderBudget active={loop && visible} mobile={mobile} />
       <ambientLight intensity={0.3} />
       <directionalLight position={[3, 4, 6]} intensity={1.6} color="#f2f5ff" />
@@ -387,11 +391,12 @@ export default function AxisScene() {
         <Lightformer intensity={1.5} color="#5b8cff" position={[5, 1, -1]} rotation-y={-Math.PI / 2} scale={[20, 1, 1]} />
         <Lightformer intensity={0.8} position={[0, 0, 6]} scale={[8, 3, 1]} />
       </Environment>
-      <Rig mobile={mobile} vigRef={vigRef} />
+      <Rig mobile={mobile} local={local} vigRef={vigRef} />
       {!mobile && <EffectComposer multisampling={0} enableNormalPass={false}>
         <Bloom intensity={0.8} luminanceThreshold={0.85} luminanceSmoothing={0.2} mipmapBlur resolutionScale={0.5} />
         <Vignette ref={vigRef} offset={0.3} darkness={0.55} />
       </EffectComposer>}
     </Canvas>
   </div></>;
+  return anchor ? createPortal(scene, anchor) : scene;
 }
