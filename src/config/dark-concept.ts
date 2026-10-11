@@ -1,5 +1,6 @@
 // Provisional design-study copy; no brand or product claims are finalized.
 export const darkConcept = {
+  builderNav: "Build Your Wall",
   hero: {
     cta: "Get started",
     title: "LED DISPLAYS.",

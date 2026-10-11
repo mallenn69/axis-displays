@@ -171,3 +171,8 @@ html:has(.dc-site){scroll-padding-top:0}
 @media(prefers-reduced-motion:reduce){.dc-panel-callouts{animation:none}}
 
 .dc-panel-callout small{display:block;font-size:9px;line-height:1.35;font-weight:400;color:#9daec7;margin-top:4px}
+
+/* Keep the wall builder visible in the compact mobile navigation. */
+.dc-nav nav .dc-nav-builder{padding:11px 15px;border:1px solid #58baff70;border-radius:6px;background:#228bd51a;color:#bfe5ff;font-weight:700;white-space:nowrap}
+.dc-nav nav .dc-nav-builder:hover{background:#228bd533;border-color:#58baff}
+@media(max-width:500px){.dc-nav nav{gap:10px}.dc-nav nav .dc-nav-builder{padding:10px;font-size:11px}.dc-nav nav a[href='#quote']{gap:4px;font-size:10px}}

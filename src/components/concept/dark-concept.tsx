@@ -59,6 +59,9 @@ export function DarkConcept() {
           <nav>
             <a href="#inside">The panel</a>
             <a href="#possibilities">The experience</a>
+            <a className="dc-nav-builder" href={`${import.meta.env.BASE_URL}build/`}>
+              {darkConcept.builderNav}
+            </a>
             <a href="#quote">
               Get in touch <ArrowUpRight size={16} />
             </a>

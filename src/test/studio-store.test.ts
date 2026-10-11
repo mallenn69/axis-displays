@@ -1,0 +1,8 @@
+import { beforeEach, describe, expect, it, vi } from 'vitest';
+import { countPanels, defaultDesign, presetSections, studioSchema } from '@/config/studio';
+beforeEach(()=>{vi.resetModules();localStorage.clear()});
+describe('stage designer',()=>{
+ it('keeps overhead sections and their angles in a serializable layout',()=>{const d={...defaultDesign,sections:presetSections('canopy')};const restored=studioSchema.parse(JSON.parse(JSON.stringify(d)));expect(countPanels(restored)).toBe(56);expect(restored.sections.filter(s=>s.kind==='overhead').map(s=>s.tilt)).toEqual([-65,-65,-65]);expect(studioSchema.safeParse({...d,sections:[{...d.sections[0],cols:1000}]}).success).toBe(false)});
+ it('undoes an entire drag and restores it on redo',async()=>{const s=await import('@/components/builder/studio-store');s.beginGesture();s.editSection('wall',{x:1});s.editSection('wall',{x:2});s.editSection('wall',{x:3});s.endGesture();expect(s.studio.current.undo).toHaveLength(1);s.stepHistory(true);expect(s.studio.current.design.sections[0]!.x).toBe(0);s.stepHistory(false);expect(s.studio.current.design.sections[0]!.x).toBe(3)});
+ it('restores a saved layout and rejects corrupt stored input',async()=>{let s=await import('@/components/builder/studio-store');s.changeDesign({sections:presetSections('columns')});vi.resetModules();s=await import('@/components/builder/studio-store');s.hydrateStudio();expect(countPanels(s.studio.current.design)).toBe(30);expect(s.studio.current.selected).toBe('column-0');localStorage.setItem('axis-stage-designer-v1','{"sections":[]}');s.hydrateStudio();expect(s.studio.current.design.sections).toHaveLength(5)});
+});
