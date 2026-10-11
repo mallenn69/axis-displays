@@ -158,3 +158,5 @@ html:has(.dc-site){scroll-padding-top:0}
 /* Keep mobile WebGL in document flow, independent of browser toolbar resizing. */
 .dc-panel-anchor{position:relative;isolation:isolate}
 .dc-panel-anchor .scene-canvas-local{position:absolute;inset:0;overflow:hidden;transition:none;touch-action:pan-y}
+
+.dc-layer-benefits{list-style:none;margin:18px 0 0;padding:0;display:grid;gap:12px}.dc-layer-benefits li{border-left:2px solid #5689ed;padding-left:12px}.dc-layer-benefits strong{display:block;font-size:13px;font-weight:600;color:#e7ebed}.dc-layer-benefits span{display:block;margin-top:4px;font-size:12px;line-height:1.5;color:#929ba7}

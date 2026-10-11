@@ -30,8 +30,13 @@ export const darkConcept = {
     {
       name: "Layers",
       step: 4,
-      title: "Inside the panel.",
-      text: "Take a look at the modules, electronics and frame.",
+      title: "Built for the image. Designed for easy access.",
+      text: "Fine detail on the front. Simple maintenance behind it.",
+      features: [
+        { title: "2.6 mm pixel pitch", text: "Fine detail for lyrics, graphics and video." },
+        { title: "Full-color RGB", text: "Red, green and blue LEDs bring your content to life." },
+        { title: "Screw-free module removal", text: "Remove individual LED modules for easy service access." },
+      ],
     },
   ],
 };

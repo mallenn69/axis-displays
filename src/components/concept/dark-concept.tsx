@@ -129,6 +129,7 @@ export function DarkConcept() {
                 <div className="dc-description" aria-live="polite">
                   <h3>{views[view]!.title}</h3>
                   <p>{views[view]!.text}</p>
+                  {views[view]!.features && <ul className="dc-layer-benefits">{views[view]!.features!.map(feature => <li key={feature.title}><strong>{feature.title}</strong><span>{feature.text}</span></li>)}</ul>}
                 </div>
               </div>
               <div className="dc-panel-visual">

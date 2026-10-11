@@ -80,7 +80,7 @@ function Rig({ mobile, local, vigRef }: { mobile: boolean; local: boolean; vigRe
   const [hover, setHover] = useState<string | null>(null);
   const stepRef = useRef(0); stepRef.current = snap.section === 'story' ? snap.step : -1;
   const ctl: HoverCtl = { hover, setHover, stepRef };
-  const showLabels = !mobile && snap.section === 'story' && snap.step === 4;
+  const showLabels = !document.querySelector('.dc-panel-anchor') && !mobile && snap.section === 'story' && snap.step === 4;
   useEffect(() => { setScene({ ready: true }); }, []);
   useEffect(() => { if (!showLabels) setHover(null); }, [showLabels]);
   useEffect(() => { document.body.style.cursor = hover ? 'pointer' : ''; return () => { document.body.style.cursor = ''; }; }, [hover]);
