@@ -9,7 +9,11 @@ export const studioCopy = {
   quoteTitle: "Let’s bring this to your space.",
   quoteDetail:
     "We’ll use your layout to prepare a quote with both panel options, so you can compare the difference.",
-  previewNote: "Design preview — requests are not sent yet.",
+  sendButton: "Send my quote request",
+  sentTitle: "Your request is in.",
+  sentDetail: "The Axis Displays team will review your layout and follow up with a quote.",
+  sentNote: "Your contact details and wall layout have been received.",
+  privacy: "We’ll use your information to respond to your quote request.",
   disclaimer:
     "Concept preview. Dimensions are approximate; mounting and rigging are reviewed for your space.",
   contents: [
