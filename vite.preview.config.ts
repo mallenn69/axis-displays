@@ -5,7 +5,7 @@ import { fileURLToPath } from 'node:url';
 const resolve = (path: string) => fileURLToPath(new URL(path, import.meta.url));
 export default defineConfig({
   root: resolve('./preview'),
-  base: '/axis-displays/',
+  base: '/',
   publicDir: resolve('./public'),
   plugins: [react(), tailwindcss()],
   define: { 'import.meta.env.VITE_DESIGN_PREVIEW': JSON.stringify('true') },
