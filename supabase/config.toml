@@ -1,1 +1,3 @@
-project_id = "vcqsheiuzpqbwrsnszlg"
+project_id = "yqckljruarvljtagcnas"
+[functions.axis-leads]
+verify_jwt = false

@@ -6,13 +6,14 @@ import './leads.css';
 export function LeadPage() {
  const [photo,setPhoto]=useState<File|null>(null),[busy,setBusy]=useState(false),[done,setDone]=useState(false),[error,setError]=useState('');
  const fileInput=useRef<HTMLInputElement>(null);
+ const submission=useRef(crypto.randomUUID());
  const endpoint=import.meta.env['VITE_LEADS_ENDPOINT'];
  async function send(e:FormEvent<HTMLFormElement>){
   e.preventDefault(); if(busy)return; setError('');
   if(!endpoint){setError('This form is not accepting inquiries yet. Please check back shortly.');return;}
-  const data=new FormData(e.currentTarget); if(photo)data.set('photo',photo); else data.delete('photo');
+  const data=new FormData(e.currentTarget);data.set('submission_id',submission.current); if(photo)data.set('photo',photo); else data.delete('photo');
   setBusy(true);
-  try {const response=await fetch(endpoint,{method:'POST',body:data});if(!response.ok)throw new Error();setDone(true);}
+  try {const response=await fetch(endpoint,{method:'POST',body:data});const result=await response.json();if(!response.ok||result.success!==true)throw new Error();setDone(true);}
   catch{setError('Your inquiry wasn’t sent. Your details are still here—please try again.');}
   finally{setBusy(false);}
  }

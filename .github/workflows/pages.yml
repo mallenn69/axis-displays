@@ -26,6 +26,10 @@ jobs:
           bun-version: 1.4.3
       - run: bun install --frozen-lockfile
       - run: npm run build:preview
+        env:
+          VITE_SUPABASE_URL: ${{ vars.VITE_SUPABASE_URL }}
+          VITE_SUPABASE_PUBLISHABLE_KEY: ${{ vars.VITE_SUPABASE_PUBLISHABLE_KEY }}
+          VITE_LEADS_ENDPOINT: ${{ vars.VITE_LEADS_ENDPOINT }}
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
         with:
