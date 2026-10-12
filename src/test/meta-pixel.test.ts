@@ -30,14 +30,22 @@ it('honors session opt-outs even when storage fails', async () => {
  expect(window.fbq!.queue.at(-1)).toEqual(['consent', 'revoke']);
  vi.restoreAllMocks();
 });
-it.each([['localhost', '/start/'], ['axisledwalls.com', '/'], ['axisledwalls.com', '/build/']])('does not initialize on %s%s', async (hostname, pathname) => {
+it.each([['localhost', '/start/'], ['axisledwalls.com', '/']])('does not initialize on %s%s', async (hostname, pathname) => {
  vi.stubGlobal('location', {hostname, pathname});
  const m = await import('../lib/meta-pixel'); m.startPixel(); expect(window.fbq).toBeUndefined();
 });
 
-it('initializes on the educational compare landing page', async () => {
- vi.stubGlobal('location', {hostname:'axisledwalls.com',pathname:'/compare/'});
+it.each(['/compare/', '/build/'])('initializes on %s', async pathname => {
+ vi.stubGlobal('location', {hostname:'axisledwalls.com',pathname});
  const { startPixel } = await import('../lib/meta-pixel');
  startPixel();
  expect(window.fbq).toBeDefined();
+});
+
+it.each(['declined', 'gpc'])('respects %s on the builder', async choice => {
+ vi.stubGlobal('location', {hostname:'axisledwalls.com',pathname:'/build/'});
+ if(choice==='gpc') vi.stubGlobal('navigator', {globalPrivacyControl:true});
+ else localStorage.setItem('axis-ad-measurement','declined');
+ const m=await import('../lib/meta-pixel');m.startPixel();m.trackSavedLead('blocked');
+ expect(window.fbq).toBeUndefined();
 });

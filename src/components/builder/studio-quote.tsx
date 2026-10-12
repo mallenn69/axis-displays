@@ -1,3 +1,4 @@
+import { trackSavedLead } from "@/lib/meta-pixel";
 import { trackTraffic } from "@/lib/traffic";
 import { useEffect, useRef, useState, type FormEvent } from "react";
 import { X, Layers, ArrowUpRight, Download } from "lucide-react";
@@ -41,6 +42,7 @@ export function QuoteDialog({ onClose, design }: { onClose: () => void; design: 
     try {
       await sendBuilderInquiry(endpoint, builderInquiry(design, contact, submission.current));
       setReview(true);
+      trackSavedLead(submission.current);
       void trackTraffic("quote_submitted", submission.current);
     } catch (err) {
       setError(err instanceof Error && err.name !== "TimeoutError" ? err.message : "We couldn’t confirm your request. Please try again—your details are still here.");

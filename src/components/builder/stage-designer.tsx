@@ -1,3 +1,4 @@
+import { startPixel } from "@/lib/meta-pixel";
 import { useState, useEffect } from "react";
 import { ArrowUpRight, ArrowLeft, Plus, Minus, Play, Pause, Check } from "lucide-react";
 import logo from "@/assets/axis-displays-logo.png";
@@ -183,6 +184,7 @@ function Preview({
   );
 }
 export function StageDesigner() {
+  useEffect(() => { startPixel(); }, []);
   const [layout, setLayout] = useState<SimpleLayout>(simpleDefault),
     [final, setFinal] = useState(false),
     [visual, setVisual] = useState<StudioDesign["content"]>("motion"),
