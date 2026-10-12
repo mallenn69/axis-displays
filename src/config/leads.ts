@@ -1,10 +1,15 @@
 export const leadCopy = {
- title: 'Let’s talk about your church.',
- description: 'Looking at an LED wall? Tell us a little about your space and what you have in mind.',
- button: 'Send my inquiry',
+ title: 'See your sanctuary with an LED wall.',
+ description: 'Get a free custom sanctuary design preview. Share a few details about your church, and we’ll help you picture an LED wall in your space.',
+ eyebrow: 'YOUR SPACE. REIMAGINED.',
+ formTitle: 'Get my free design preview',
+ formIntro: 'Tell us where you’re starting. We’ll help you picture what’s possible.',
+ previewCaption: 'Sanctuary design concept · Your preview will be tailored to your space.',
+ nextSteps: 'Add a sanctuary photo if you have one. We’ll follow up to confirm the details for your custom preview.',
+ button: 'Request my free design',
  privacy: 'We’ll use your information only to respond to this inquiry.',
- success: 'Thanks. We’ve received your inquiry.',
- successDetail: 'The Axis Displays team will follow up using the contact information you provided.',
+ success: 'Your free design request is in.',
+ successDetail: 'The Axis Displays team will contact you to confirm your space and next steps for your custom design preview.',
 };
 export const states = ['Alabama','Alaska','Arizona','Arkansas','California','Colorado','Connecticut','Delaware','District of Columbia','Florida','Georgia','Hawaii','Idaho','Illinois','Indiana','Iowa','Kansas','Kentucky','Louisiana','Maine','Maryland','Massachusetts','Michigan','Minnesota','Mississippi','Missouri','Montana','Nebraska','Nevada','New Hampshire','New Jersey','New Mexico','New York','North Carolina','North Dakota','Ohio','Oklahoma','Oregon','Pennsylvania','Rhode Island','South Carolina','South Dakota','Tennessee','Texas','Utah','Vermont','Virginia','Washington','West Virginia','Wisconsin','Wyoming','Outside the US'];
 export const MAX_PHOTO_BYTES = 8 * 1024 * 1024;
