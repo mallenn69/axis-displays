@@ -3,23 +3,23 @@ export const META_PIXEL_ID = '1135493235533163';
 const consentKey = 'axis-ad-measurement';
 type Pixel = ((...args: unknown[]) => void) & { queue: unknown[][]; callMethod?: (...args: unknown[]) => void; push?: Pixel; loaded: boolean; version: string };
 declare global { interface Window { fbq?: Pixel; _fbq?: Pixel } }
+let sessionChoice: boolean | undefined;
 let initialized = false;
 let pageViewed = false;
 const sent = new Set<string>();
 export function measurementAllowed() {
  if (typeof window === 'undefined' || (navigator as Navigator & {globalPrivacyControl?: boolean}).globalPrivacyControl) return false;
- try { return localStorage.getItem(consentKey) === 'allowed'; } catch { return false; }
-}
-export function measurementChoice(): string | null {
- try { return localStorage.getItem(consentKey); } catch { return null; }
+ if (sessionChoice !== undefined) return sessionChoice;
+ try { const choice = localStorage.getItem(consentKey); return choice === null || choice === 'allowed'; } catch { return false; }
 }
 export function setMeasurementAllowed(allowed: boolean) {
+ sessionChoice = allowed;
  try { localStorage.setItem(consentKey, allowed ? 'allowed' : 'declined'); } catch { /* session-only choice */ }
  if (!allowed) { window.fbq?.('consent', 'revoke'); return; }
- startPixel(true);
+ startPixel();
 }
-export function startPixel(explicitConsent = false) {
- if ((!explicitConsent && !measurementAllowed()) || (navigator as Navigator & {globalPrivacyControl?: boolean}).globalPrivacyControl) return;
+export function startPixel() {
+ if (!measurementAllowed()) return;
  // Keep the pixel off previews, admin pages and every other route.
  if (location.hostname !== 'axisledwalls.com' || !/^\/start\/?$/.test(location.pathname)) return;
  if (!window.fbq) {
