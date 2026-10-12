@@ -215,11 +215,11 @@ export function StageDesigner() {
           <span className="sd-eyebrow">
             {final ? "02 / MAKE IT YOURS" : "01 / BUILD YOUR WALL"}
           </span>
-          <h1>{final ? "See it come together." : "Your wall. Made simple."}</h1>
+          <h1>{final ? "See it come together." : studioCopy.builderTitle}</h1>
           <p>
             {final
               ? studioCopy.graphicsIntro
-              : "Set the size. Add a little more if you want."}
+              : studioCopy.builderIntro}
           </p>
         </div>
       </section>

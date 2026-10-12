@@ -4,6 +4,8 @@ export const studioCopy = {
   graphicsIntro: "See how different graphics look on your layout, then request a quote.",
   graphicsNote: "These graphics are just for visualization. You can display your own content on your wall.",
   title: "Make room for your vision.",
+  builderTitle: "Design your church’s LED wall. Get a quote for your setup.",
+  builderIntro: "Choose your size and layout, then send us your design. We’ll review your setup and follow up with pricing for your church.",
   subtitle: "Start with a layout. Make it yours. We’ll handle the details.",
   quote: "Get my quote",
   quoteTitle: "Let’s bring this to your space.",
