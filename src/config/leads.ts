@@ -75,11 +75,11 @@ export const educationalLeadCopy = {
   description:
     "Talk with the Axis team about your space, goals, and budget. We’ll help you understand which LED wall options make sense for your church.",
   eyebrow: "CHURCH LED WALLS. PERSONAL GUIDANCE.",
-  formTitle: "Let’s talk about your church",
+  formTitle: "Get more info for your church",
   formIntro: "Leave your details and an Axis specialist will follow up to learn about your space and answer your questions.",
   previewCaption: "A real Axis church installation.",
   nextSteps: "",
-  button: "Talk to an LED wall specialist",
+  button: "Get more info",
   privacy: leadCopy.privacy,
   success: "Thanks. Let’s find the right fit.",
   successDetail:
