@@ -71,17 +71,17 @@ export const states = [
 export const MAX_PHOTO_BYTES = 8 * 1024 * 1024;
 
 export const educationalLeadCopy = {
-  title: "Compare the wall. Not just the logo.",
+  title: "Find the right LED wall for your church.",
   description:
-    "Explore LED wall options for your church, with clear pricing and a three-year warranty from Axis.",
-  eyebrow: "A SMARTER START FOR YOUR CHURCH.",
-  formTitle: "Get my Axis quote",
-  formIntro: "Leave your details. We’ll help you compare options for your church.",
+    "Talk with the Axis team about your space, goals, and budget. We’ll help you understand which LED wall options make sense for your church.",
+  eyebrow: "CHURCH LED WALLS. PERSONAL GUIDANCE.",
+  formTitle: "Let’s talk about your church",
+  formIntro: "Leave your details and an Axis specialist will follow up to learn about your space and answer your questions.",
   previewCaption: "A real Axis church installation.",
   nextSteps: "",
-  button: "Request my quote",
+  button: "Talk to an LED wall specialist",
   privacy: leadCopy.privacy,
-  success: "Your quote request is in.",
+  success: "Thanks. Let’s find the right fit.",
   successDetail:
     "The Axis Displays team will contact you to learn about your space and help you compare LED wall options.",
 };

@@ -37,7 +37,7 @@ export function LeadPage({ educational = false }: { educational?: boolean }) {
       data.set("church_name", "Not provided");
       data.set(
         "description",
-        "Educational carousel: requested an Axis LED wall quote via /compare/.",
+        "Educational carousel: requested a conversation about church LED wall options via /compare/.",
       );
     }
     if (photo) data.set("photo", photo);
