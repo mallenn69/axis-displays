@@ -21,7 +21,7 @@ export function setMeasurementAllowed(allowed: boolean) {
 export function startPixel() {
  if (!measurementAllowed()) return;
  // Keep the pixel off previews, admin pages and every other route.
- if (location.hostname !== 'axisledwalls.com' || !/^\/start\/?$/.test(location.pathname)) return;
+ if (location.hostname !== 'axisledwalls.com' || !/^\/(start|compare)\/?$/.test(location.pathname)) return;
  if (!window.fbq) {
   const pixel = function (...args: unknown[]) { pixel.callMethod ? pixel.callMethod(...args) : pixel.queue.push(args); } as Pixel;
   pixel.queue = []; pixel.push = pixel; pixel.loaded = true; pixel.version = '2.0';

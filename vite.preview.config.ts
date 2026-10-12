@@ -14,5 +14,5 @@ export default defineConfig({
     { find: '@tanstack/react-start', replacement: resolve('./preview/server-stub.ts') },
     { find: '@', replacement: resolve('./src') },
   ] },
-  build: { rollupOptions: { input: { main: resolve('./preview/index.html'), build: resolve('./preview/build/index.html'), start: resolve('./preview/start/index.html'), admin: resolve('./preview/admin/index.html') } }, outDir: resolve('./dist-preview'), emptyOutDir: true },
+  build: { rollupOptions: { input: { main: resolve('./preview/index.html'), build: resolve('./preview/build/index.html'), start: resolve('./preview/start/index.html'), compare: resolve('./preview/compare/index.html'), admin: resolve('./preview/admin/index.html') } }, outDir: resolve('./dist-preview'), emptyOutDir: true },
 });

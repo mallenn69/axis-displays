@@ -34,3 +34,10 @@ it.each([['localhost', '/start/'], ['axisledwalls.com', '/'], ['axisledwalls.com
  vi.stubGlobal('location', {hostname, pathname});
  const m = await import('../lib/meta-pixel'); m.startPixel(); expect(window.fbq).toBeUndefined();
 });
+
+it('initializes on the educational compare landing page', async () => {
+ vi.stubGlobal('location', {hostname:'axisledwalls.com',pathname:'/compare/'});
+ const { startPixel } = await import('../lib/meta-pixel');
+ startPixel();
+ expect(window.fbq).toBeDefined();
+});
