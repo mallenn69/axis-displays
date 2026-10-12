@@ -1,3 +1,4 @@
+import { trackTraffic } from "@/lib/traffic";
 import { useRef, useState, type FormEvent } from 'react';
 import logo from '@/assets/axis-displays-logo.png';
 import stage from '@/assets/axis-stage-wide.jpg';
@@ -15,7 +16,7 @@ export function LeadPage() {
   if(!endpoint){setError('This form is not accepting inquiries yet. Please check back shortly.');return;}
   const data=new FormData(e.currentTarget);data.set('submission_id',submission.current); if(photo)data.set('photo',photo); else data.delete('photo');
   setBusy(true);
-  try {const response=await fetch(endpoint,{method:'POST',body:data});const result=await response.json();if(!response.ok||result.success!==true)throw new Error();setDone(true);trackSavedLead(submission.current);}
+  try {const response=await fetch(endpoint,{method:'POST',body:data});const result=await response.json();if(!response.ok||result.success!==true)throw new Error();setDone(true);void trackTraffic("quote_submitted",submission.current);trackSavedLead(submission.current);}
   catch{setError('Your inquiry wasn’t sent. Your details are still here—please try again.');}
   finally{setBusy(false);}
  }

@@ -1,3 +1,4 @@
+import { TrafficDashboard } from "./traffic-dashboard";
 import { useEffect, useState, type FormEvent } from "react";
 import {
   ArrowUpRight,
@@ -400,6 +401,7 @@ function Dashboard({ demo, exit }: { demo: boolean; exit: () => void | Promise<v
             {notice}
           </div>
         )}
+        {tab === "leads" && !demo && <TrafficDashboard />}
         {tab === "leads" ? (
           <>
             <div className="cc-metrics">
