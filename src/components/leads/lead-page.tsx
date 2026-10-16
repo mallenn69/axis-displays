@@ -33,13 +33,6 @@ export function LeadPage({ educational = false }: { educational?: boolean }) {
     }
     const data = new FormData(e.currentTarget);
     data.set("submission_id", submission.current);
-    if (educational) {
-      data.set("church_name", "Not provided");
-      data.set(
-        "description",
-        "Educational carousel: requested a conversation about church LED wall options via /compare/.",
-      );
-    }
     if (photo) data.set("photo", photo);
     else data.delete("photo");
     setBusy(true);
@@ -99,9 +92,7 @@ export function LeadPage({ educational = false }: { educational?: boolean }) {
               <h2>{leadCopy.formTitle}</h2>
               <p className="lead-form-intro">{leadCopy.formIntro}</p>
               <p className="lead-required">
-                {educational
-                  ? "All four fields required."
-                  : "All fields required except the photo."}
+                {educational ? leadCopy.requiredNote : "All fields required except the photo."}
               </p>
               {!endpoint && (
                 <p className="lead-preview-note">
@@ -121,17 +112,10 @@ export function LeadPage({ educational = false }: { educational?: boolean }) {
                   Email address
                   <input name="email" type="email" autoComplete="email" required maxLength={254} />
                 </label>
-                {!educational && (
-                  <label className="lead-wide">
-                    Church name
-                    <input
-                      name="church_name"
-                      autoComplete="organization"
-                      required
-                      maxLength={150}
-                    />
-                  </label>
-                )}
+                <label className="lead-wide">
+                  {leadCopy.churchLabel}
+                  <input name="church_name" autoComplete="organization" required maxLength={150} />
+                </label>
                 <label className="lead-wide">
                   {educational ? "Location (state)" : "State"}
                   <select name="state" autoComplete="address-level1" required defaultValue="">
@@ -143,18 +127,16 @@ export function LeadPage({ educational = false }: { educational?: boolean }) {
                     ))}
                   </select>
                 </label>
-                {!educational && (
-                  <label className="lead-wide">
-                    Brief description
-                    <textarea
-                      name="description"
-                      required
-                      maxLength={3000}
-                      rows={3}
-                      placeholder="Tell us about your space and what you’re looking for."
-                    />
-                  </label>
-                )}
+                <label className="lead-wide">
+                  {leadCopy.notesLabel}
+                  <textarea
+                    name="description"
+                    required
+                    maxLength={3000}
+                    rows={3}
+                    placeholder={leadCopy.notesPlaceholder}
+                  />
+                </label>
               </div>
               {!educational && (
                 <div className="lead-upload">

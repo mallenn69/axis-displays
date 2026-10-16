@@ -1,4 +1,8 @@
 export const leadCopy = {
+  churchLabel: "Church name",
+  notesLabel: "Brief description",
+  notesPlaceholder: "Tell us about your space and what you’re looking for.",
+  requiredNote: "All fields required except the photo.",
   title: "See your sanctuary with an LED wall.",
   description:
     "Get a free custom sanctuary design preview. Share a few details about your church, and we’ll help you picture an LED wall in your space.",
@@ -71,12 +75,18 @@ export const states = [
 export const MAX_PHOTO_BYTES = 8 * 1024 * 1024;
 
 export const educationalLeadCopy = {
+  churchLabel: "Church name",
+  notesLabel: "Tell us a bit about your space or project",
+  notesPlaceholder:
+    "For example: your current screen setup, approximate stage size, or what you’d like to change.",
+  requiredNote: "All fields required.",
   title: "Find the right LED wall for your church.",
   description:
     "Talk with the Axis team about your space, goals, and budget. We’ll help you understand which LED wall options make sense for your church.",
   eyebrow: "CHURCH LED WALLS. PERSONAL GUIDANCE.",
   formTitle: "Get more info for your church",
-  formIntro: "Leave your details and an Axis specialist will follow up to learn about your space and answer your questions.",
+  formIntro:
+    "Leave your details and an Axis specialist will follow up to learn about your space and answer your questions.",
   previewCaption: "A real Axis church installation.",
   nextSteps: "",
   button: "Get more info",

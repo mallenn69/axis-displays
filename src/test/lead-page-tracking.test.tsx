@@ -52,11 +52,11 @@ it('can hide the separate analytics preferences on the start page', async () => 
  expect(container.innerHTML).toBe('');
 });
 
-it('saves the educational inquiry with only four visible fields and tracks confirmed success', async () => {
+it('saves the educational inquiry with church and project details and tracks confirmed success', async () => {
  vi.stubGlobal('fetch', vi.fn(async () => ({ ok: true, json: async () => ({ success: true }) })));
  const { container } = render(<LeadPage educational />);
- expect(screen.queryByLabelText('Church name')).toBeNull();
- expect(screen.queryByLabelText('Brief description')).toBeNull();
+ fireEvent.change(screen.getByLabelText('Church name'), { target: { value: 'Example Church' } });
+ fireEvent.change(screen.getByLabelText('Tell us a bit about your space or project'), { target: { value: 'Replace our projector on a 30-foot stage.' } });
  expect(container.querySelector('input[type="file"]')).toBeNull();
  fireEvent.change(screen.getByLabelText('Full name'), { target: { value: 'Example Person' } });
  fireEvent.change(screen.getByLabelText('Phone number'), { target: { value: '2025550100' } });
@@ -66,8 +66,8 @@ it('saves the educational inquiry with only four visible fields and tracks confi
  await screen.findByRole('status');
  const body = vi.mocked(fetch).mock.calls[0][1]!.body as FormData;
  expect(body.get('state')).toBe('Arizona');
- expect(body.get('church_name')).toBe('Not provided');
- expect(body.get('description')).toContain('/compare/');
+ expect(body.get('church_name')).toBe('Example Church');
+ expect(body.get('description')).toBe('Replace our projector on a 30-foot stage.');
  expect(body.has('photo')).toBe(false);
  expect(trackSavedLead).toHaveBeenCalledWith(body.get('submission_id'));
 });
