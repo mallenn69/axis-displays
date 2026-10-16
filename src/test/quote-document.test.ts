@@ -10,11 +10,11 @@ it("escapes customer content and excludes internal notes and catalog from the cu
   q.supports = 3;
   q.costsReviewed = true;
   q.customer = "<img src=x onerror=alert(1)>";
-  q.internalNotes = "PRIVATE PURCHASE NEGOTIATION";
+  q.notes = "PRIVATE PURCHASE NEGOTIATION";
   const html = quoteDocument(q);
   expect(html).toContain("&lt;img src=x onerror=alert(1)&gt;");
   expect(html).not.toContain(q.customer);
-  expect(html).not.toContain(q.internalNotes);
+  expect(html).not.toContain(q.notes);
   expect(html).not.toContain("manualMargin");
   expect(html).not.toContain("singleWidthMm");
   expect(html).toContain("Print / Save PDF");

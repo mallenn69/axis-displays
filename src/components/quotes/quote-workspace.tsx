@@ -1,3 +1,4 @@
+import { WallVisualizer } from "./wall-visualizer";
 import { quoteDocument } from "@/lib/quote-document";
 import { useEffect, useState } from "react";
 import { Plus, Save, Copy, Printer, BookOpen, ArrowLeft, Trash2 } from "lucide-react";
@@ -496,6 +497,7 @@ export function QuoteWorkspace({
                     Add wall / columns
                   </button>
                 </div>
+                <WallVisualizer sections={draft.sections} catalog={draft.catalog} />
                 <div className="qw-card">
                   <h2>03 / Mounting</h2>
                   <div className="qw-fields">
