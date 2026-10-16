@@ -38,6 +38,7 @@ export function WallVisualizer({
         <div>
           {valid.map((s, index) => {
             const d = sizes[index];
+            const rows = s.tall * (s.type === "double" ? 2 : 1);
             const width = d.widthMm * scale,
               height = d.heightMm * scale;
             const x = (320 - width) / 2,
@@ -52,8 +53,8 @@ export function WallVisualizer({
                   </span>
                 </h3>
                 <p className="wv-spec">
-                  {d.widthFt.toFixed(2)} × {d.heightFt.toFixed(2)} ft each · {s.wide} wide ×{" "}
-                  {s.tall} tall · {s.type} cabinets
+                  {d.widthFt.toFixed(2)} × {d.heightFt.toFixed(2)} ft each · {s.wide} wide × {rows}{" "}
+                  tall · single-panel equivalents
                 </p>
                 <div className="wv-grid">
                   {Array.from({ length: s.quantity }, (_, instance) => (
@@ -61,7 +62,7 @@ export function WallVisualizer({
                       <svg
                         viewBox="0 0 320 250"
                         role="img"
-                        aria-label={`${s.name} ${instance + 1}: ${s.wide} by ${s.tall} ${s.type} cabinets, ${d.widthFt.toFixed(2)} by ${d.heightFt.toFixed(2)} feet`}
+                        aria-label={`${s.name} ${instance + 1}: ${s.wide} by ${rows} single-panel equivalents, ${d.widthFt.toFixed(2)} by ${d.heightFt.toFixed(2)} feet`}
                       >
                         <rect
                           x={x}
@@ -83,13 +84,13 @@ export function WallVisualizer({
                             strokeWidth="0.6"
                           />
                         ))}
-                        {Array.from({ length: s.tall - 1 }, (_, i) => (
+                        {Array.from({ length: rows - 1 }, (_, i) => (
                           <line
                             key={`h${i}`}
                             x1={x}
                             x2={x + width}
-                            y1={y + ((i + 1) * height) / s.tall}
-                            y2={y + ((i + 1) * height) / s.tall}
+                            y1={y + ((i + 1) * height) / rows}
+                            y2={y + ((i + 1) * height) / rows}
                             stroke="#74d9cf"
                             strokeWidth="0.6"
                           />

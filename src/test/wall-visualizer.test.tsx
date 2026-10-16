@@ -15,6 +15,10 @@ it("renders all repeated columns and uses actual cabinet proportions at a shared
   expect(Number(rects[1].getAttribute("height"))).toBe(Number(rects[0].getAttribute("height")) * 2);
   expect(Number(rects[1].getAttribute("width"))).toBe(Number(rects[0].getAttribute("width")) / 2);
   expect(container.querySelectorAll("svg")[0].querySelectorAll("line")).toHaveLength(2);
+  expect(container.querySelectorAll("svg")[1].querySelectorAll("line")).toHaveLength(3);
+  expect(screen.getAllByRole("img")[1].getAttribute("aria-label")).toContain(
+    "1 by 4 single-panel equivalents",
+  );
   rerender(<WallVisualizer sections={[{ ...sections[0], wide: 4 }]} catalog={emptyCatalog} />);
   expect(screen.getAllByRole("img")).toHaveLength(1);
   expect(screen.getByRole("img").getAttribute("aria-label")).toContain("4 by 2");
