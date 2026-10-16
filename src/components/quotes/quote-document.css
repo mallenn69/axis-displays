@@ -1,0 +1,285 @@
+* {
+  box-sizing: border-box;
+}
+body {
+  margin: 0;
+  background: #e9eef0;
+  color: #15252b;
+  font:
+    14px/1.6 Arial,
+    Helvetica,
+    sans-serif;
+}
+.print-tools {
+  max-width: 900px;
+  margin: 24px auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 24px;
+  color: #43565d;
+}
+.print-tools button {
+  border: 0;
+  border-radius: 8px;
+  background: #102c33;
+  color: white;
+  padding: 12px 20px;
+  font: inherit;
+  cursor: pointer;
+}
+.quote-sheet {
+  max-width: 900px;
+  margin: 0 auto 48px;
+  background: white;
+  box-shadow: 0 16px 60px #16363c18;
+}
+.brand {
+  background: #09171d;
+  border-bottom: 5px solid #2edbd2;
+  padding: 30px 44px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: #a8c0c7;
+  font-size: 10px;
+  letter-spacing: 2px;
+}
+.brand img {
+  width: 168px;
+  height: auto;
+  max-height: 72px;
+  object-fit: contain;
+}
+.intro {
+  padding: 38px 44px 26px;
+}
+.eyebrow {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  color: #187e7c;
+  margin: 0 0 12px;
+}
+h1 {
+  font-size: 34px;
+  line-height: 1.15;
+  letter-spacing: -1px;
+  margin: 0 0 20px;
+  overflow-wrap: anywhere;
+}
+.prepared {
+  color: #617078;
+}
+.prepared strong {
+  color: #15252b;
+}
+.section {
+  padding: 0 44px;
+  margin: 0 0 28px;
+}
+h2 {
+  font-size: 15px;
+  margin: 0 0 14px;
+}
+h3 {
+  margin: 0;
+  font-size: 15px;
+}
+.wall {
+  border-top: 1px solid #dce6e8;
+  padding: 16px 0;
+  display: flex;
+  justify-content: space-between;
+  gap: 24px;
+  break-inside: avoid;
+}
+.wall p {
+  font-size: 12px;
+  color: #607179;
+  margin: 5px 0 0;
+}
+.size {
+  text-align: right;
+}
+.size strong {
+  font-size: 20px;
+  white-space: nowrap;
+}
+.size small {
+  font-size: 12px;
+  font-weight: 400;
+}
+.included {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px 26px;
+}
+.included li {
+  padding-left: 15px;
+  position: relative;
+  font-size: 12px;
+  break-inside: avoid;
+}
+.included li:before {
+  content: "•";
+  position: absolute;
+  left: 0;
+  color: #138b86;
+}
+.pricing {
+  margin: 0 44px 28px;
+  padding: 24px;
+  background: #eff8f7;
+  border: 1px solid #bfe1de;
+  border-left: 4px solid #168b85;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  break-inside: avoid;
+}
+.pricing h2 {
+  font-size: 20px;
+  margin-bottom: 6px;
+}
+.pricing p:not(.eyebrow) {
+  font-size: 11px;
+  color: #607179;
+  margin: 0;
+}
+.pricing dl {
+  margin: 0;
+}
+.pricing dl div {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  margin-bottom: 8px;
+}
+.pricing dd {
+  margin: 0;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+.total {
+  border-top: 1px solid #b7d6d3;
+  padding-top: 12px;
+  font-size: 22px;
+  font-weight: 700;
+}
+.terms p {
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  color: #607179;
+  font-size: 11px;
+}
+.terms h2 {
+  break-after: avoid;
+}
+footer {
+  margin: 0 44px;
+  padding: 20px 0;
+  border-top: 1px solid #dce6e8;
+  display: flex;
+  justify-content: space-between;
+  font-size: 10px;
+  letter-spacing: 1px;
+}
+footer a {
+  color: #187e7c;
+  text-decoration: none;
+}
+@media (max-width: 600px) {
+  .brand,
+  .intro {
+    padding: 24px;
+  }
+  .brand span {
+    display: none;
+  }
+  .section {
+    padding: 0 24px;
+  }
+  .pricing {
+    margin: 0 24px 24px;
+    grid-template-columns: 1fr;
+  }
+  .included {
+    grid-template-columns: 1fr;
+  }
+  .wall {
+    display: block;
+  }
+  .size {
+    text-align: left;
+    margin-top: 10px;
+  }
+  h1 {
+    font-size: 28px;
+  }
+  footer {
+    margin: 0 24px;
+  }
+  .print-tools span {
+    display: none;
+  }
+  .print-tools {
+    justify-content: flex-end;
+  }
+}
+@page {
+  size: letter;
+  margin: 14mm;
+}
+@media print {
+  body {
+    background: white;
+    font-size: 12px;
+    print-color-adjust: exact;
+    -webkit-print-color-adjust: exact;
+  }
+  .print-tools {
+    display: none;
+  }
+  .quote-sheet {
+    max-width: none;
+    margin: 0;
+    box-shadow: none;
+  }
+  .brand {
+    padding: 20px 24px;
+  }
+  .intro {
+    padding: 24px 24px 18px;
+  }
+  h1 {
+    font-size: 28px;
+  }
+  .section {
+    padding: 0 24px;
+    margin-bottom: 20px;
+  }
+  .pricing {
+    margin: 0 24px 20px;
+    padding: 20px;
+  }
+  footer {
+    margin: 0 24px;
+  }
+  .included {
+    grid-template-columns: 1fr 1fr;
+  }
+  .wall {
+    display: flex;
+  }
+  .size {
+    text-align: right;
+    margin-top: 0;
+  }
+  .brand span {
+    display: block;
+  }
+}

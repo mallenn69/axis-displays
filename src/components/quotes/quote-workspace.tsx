@@ -1,3 +1,4 @@
+import { quoteDocument } from "@/lib/quote-document";
 import { useEffect, useState } from "react";
 import { Plus, Save, Copy, Printer, BookOpen, ArrowLeft, Trash2 } from "lucide-react";
 import {
@@ -186,17 +187,10 @@ export function QuoteWorkspace({
   }
   function print() {
     try {
-      const text = customerQuote(draft!);
-      const escape = (s: string) =>
-        s.replace(
-          /[&<>"']/g,
-          (ch) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[ch]!,
-        );
+      const html = quoteDocument(draft!);
       const w = window.open("", "_blank");
       if (!w) throw new Error("Allow popups to open the print view.");
-      w.document.write(
-        `<!doctype html><html><head><title>Axis Displays quote</title><style>body{font:16px/1.6 Arial,sans-serif;max-width:760px;margin:60px auto;padding:24px;color:#142432}h1{font-size:28px}pre{white-space:pre-wrap;font:inherit}button{padding:12px}@media print{button{display:none}body{margin:0}}</style></head><body><h1>AXIS DISPLAYS</h1><pre>${escape(text)}</pre><button onclick="window.print()">Print / Save PDF</button></body></html>`,
-      );
+      w.document.write(html);
       w.document.close();
     } catch (e) {
       setError((e as Error).message);
@@ -775,7 +769,18 @@ export function QuoteWorkspace({
                   {!result.warnings.length && (
                     <details>
                       <summary>Customer preview</summary>
-                      <pre>{customerQuote(draft)}</pre>
+                      <iframe
+                        title="Branded customer quote"
+                        srcDoc={quoteDocument(draft)}
+                        sandbox=""
+                        style={{
+                          width: "100%",
+                          height: 650,
+                          border: "1px solid #344b60",
+                          borderRadius: 8,
+                          background: "white",
+                        }}
+                      />
                     </details>
                   )}
                 </>
