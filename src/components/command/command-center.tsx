@@ -1,3 +1,5 @@
+import { QuoteWorkspace } from "../quotes/quote-workspace";
+import { quoteCopy } from "@/config/quote-workspace";
 import { TrafficDashboard } from "./traffic-dashboard";
 import { useEffect, useState, type FormEvent } from "react";
 import {
@@ -126,8 +128,9 @@ export function CommandCenter() {
   );
 }
 function Dashboard({ demo, exit }: { demo: boolean; exit: () => void | Promise<void> }) {
+  const [workspaceReady, setWorkspaceReady] = useState(demo);
   const [leads, setLeads] = useState<ChurchLead[]>(demo ? structuredClone(demoLeads) : []),
-    [tab, setTab] = useState<"leads" | "integrations">("leads"),
+    [tab, setTab] = useState<"leads" | "integrations" | "quotes">("leads"),
     [selected, setSelected] = useState<string | null>(null),
     [search, setSearch] = useState(""),
     [filter, setFilter] = useState("all"),
@@ -186,6 +189,7 @@ function Dashboard({ demo, exit }: { demo: boolean; exit: () => void | Promise<v
       const result = await leadApi<{ leads: ChurchLead[]; settings: Settings }>("admin");
       setLeads(result.leads);
       setSettings(result.settings);
+      setWorkspaceReady(true);
       setAuto(result.settings.enabled);
     } catch (e) {
       setError((e as Error).message);
@@ -320,6 +324,16 @@ function Dashboard({ demo, exit }: { demo: boolean; exit: () => void | Promise<v
             <LayoutDashboard size={18} /> Lead inbox <span>{leads.length}</span>
           </button>
           <button
+            className={tab === "quotes" ? "active" : ""}
+            onClick={() => {
+              setTab("quotes");
+              setSelected(null);
+              setNotice("");
+            }}
+          >
+            <Download size={18} /> Quotes
+          </button>
+          <button
             className={tab === "integrations" ? "active" : ""}
             onClick={() => {
               setTab("integrations");
@@ -351,7 +365,8 @@ function Dashboard({ demo, exit }: { demo: boolean; exit: () => void | Promise<v
       <main className="cc-main">
         <header className="cc-top">
           <span>
-            AXIS <span>/</span> {tab === "leads" ? "Lead inbox" : "Connections"}
+            AXIS <span>/</span>{" "}
+            {tab === "leads" ? "Lead inbox" : tab === "quotes" ? "Quotes" : "Connections"}
           </span>
           <span className="cc-private">
             <Circle size={7} fill="currentColor" />
@@ -366,10 +381,26 @@ function Dashboard({ demo, exit }: { demo: boolean; exit: () => void | Promise<v
         )}
         <div className="cc-heading">
           <div>
-            <p className="cc-kicker">{tab === "leads" ? "YOUR PIPELINE" : "CONNECTED WORKFLOW"}</p>
-            <h1>{tab === "leads" ? commandCopy.title : "From inquiry to CRM."}</h1>
+            <p className="cc-kicker">
+              {tab === "leads"
+                ? "YOUR PIPELINE"
+                : tab === "quotes"
+                  ? "COST TO CUSTOMER"
+                  : "CONNECTED WORKFLOW"}
+            </p>
+            <h1>
+              {tab === "leads"
+                ? commandCopy.title
+                : tab === "quotes"
+                  ? quoteCopy.title
+                  : "From inquiry to CRM."}
+            </h1>
             <p>
-              {tab === "leads" ? commandCopy.subtitle : "Connect once. Keep your team in the loop."}
+              {tab === "leads"
+                ? commandCopy.subtitle
+                : tab === "quotes"
+                  ? quoteCopy.subtitle
+                  : "Connect once. Keep your team in the loop."}
             </p>
           </div>
           {tab === "leads" && (
@@ -401,6 +432,9 @@ function Dashboard({ demo, exit }: { demo: boolean; exit: () => void | Promise<v
             {notice}
           </div>
         )}
+        <div hidden={tab !== "quotes"}>
+          {workspaceReady && <QuoteWorkspace demo={demo} role={settings.role} leads={leads} />}
+        </div>
         {tab === "leads" && !demo && <TrafficDashboard />}
         {tab === "leads" ? (
           <>
@@ -539,7 +573,7 @@ function Dashboard({ demo, exit }: { demo: boolean; exit: () => void | Promise<v
               </div>
             </section>
           </>
-        ) : (
+        ) : tab === "integrations" ? (
           <section className="cc-integrations">
             <div className="cc-integration-title">
               <span className="cc-zap">
@@ -628,7 +662,7 @@ function Dashboard({ demo, exit }: { demo: boolean; exit: () => void | Promise<v
               </p>
             </div>
           </section>
-        )}
+        ) : null}
         <footer className="cc-bottom">
           AXIS DISPLAYS <span>Built for the next conversation.</span>
         </footer>
