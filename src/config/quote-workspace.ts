@@ -138,10 +138,10 @@ export function newQuote(catalog: Catalog): QuoteInput {
 }
 
 export const wallVisualCopy = {
-  title: "Front-view layout",
+  title: "Your package at a glance",
   description:
     "Each rectangle is one cabinet. All walls use the same scale so you can compare their sizes.",
   empty: "Enter panel counts to preview your walls.",
   disclaimer:
-    "Walls are shown separately. Position, spacing, mounting hardware, and height above the floor are not represented.",
+    "Equipment illustrations are representative, not exact product drawings or an installation plan. Accessory sizes are not to scale. Walls are shown separately; spacing and height above the floor are not represented.",
 };

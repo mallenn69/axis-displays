@@ -44,7 +44,7 @@ ${visualStyles}</style></head><body>
         return `<article class="wall"><div><h3>${escape(s.name)}</h3><p>${s.quantity} ${s.quantity === 1 ? "wall" : "walls"} · 2.6mm pixel pitch</p></div><div class="size"><strong>${d.widthFt.toFixed(2)} × ${d.heightFt.toFixed(2)} <small>ft</small></strong><p>Per wall · ${s.wide} wide × ${s.tall} tall ${escape(s.type)} panels</p></div></article>`;
       })
       .join("")}</div></section>
-    <section class="section">${renderToStaticMarkup(createElement(WallVisualizer, { sections: q.sections, catalog: q.catalog }))}</section>
+    <section class="section">${renderToStaticMarkup(createElement(WallVisualizer, { sections: q.sections, catalog: q.catalog, quote: q }))}</section>
     <section class="section"><h2>Package details</h2><ul class="included">${included.map((line) => `<li>${escape(line)}</li>`).join("")}</ul></section>
     <section class="pricing"><div><p class="eyebrow">YOUR PROJECT</p><h2>Package estimate</h2><p>All amounts in USD</p></div><dl><div><dt>Package price</dt><dd>${usd(r.priceCents / 100)}</dd></div><div><dt>Tax (${q.taxPercent}%)</dt><dd>${usd(r.taxCents / 100)}</dd></div><div class="total"><dt>Total</dt><dd>${usd(r.totalCents / 100)}</dd></div></dl></section>
     ${q.terms.trim() ? `<section class="section terms"><h2>Project notes & terms</h2><p>${escape(q.terms)}</p></section>` : ""}

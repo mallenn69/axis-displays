@@ -497,7 +497,7 @@ export function QuoteWorkspace({
                     Add wall / columns
                   </button>
                 </div>
-                <WallVisualizer sections={draft.sections} catalog={draft.catalog} />
+                <WallVisualizer sections={draft.sections} catalog={draft.catalog} quote={draft} />
                 <div className="qw-card">
                   <h2>03 / Mounting</h2>
                   <div className="qw-fields">
