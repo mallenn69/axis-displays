@@ -283,3 +283,49 @@ footer a {
     display: block;
   }
 }
+/* Give each part of the proposal a predictable print flow. */
+@media print {
+  html,
+  body,
+  .quote-sheet {
+    height: auto;
+    overflow: visible;
+  }
+  .visual-section,
+  .details-section {
+    break-before: page;
+    page-break-before: always;
+  }
+  .brand,
+  .intro,
+  .wall,
+  .pricing,
+  footer {
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+  h1,
+  h2,
+  h3 {
+    break-after: avoid;
+    page-break-after: avoid;
+  }
+  p,
+  li {
+    orphans: 3;
+    widows: 3;
+  }
+  .included {
+    display: block;
+  }
+  .included li {
+    margin-bottom: 8px;
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+  .terms p {
+    white-space: pre-wrap;
+    orphans: 3;
+    widows: 3;
+  }
+}

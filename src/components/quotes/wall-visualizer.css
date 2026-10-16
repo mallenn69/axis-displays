@@ -155,3 +155,70 @@
     height: 95px;
   }
 }
+/* Block flow fragments reliably across PDF pages; grid containers can split cards. */
+@media print {
+  .wall-visualizer {
+    background: white;
+    border: 0;
+    padding: 0;
+    margin: 0;
+    overflow: visible;
+  }
+  .wv-package,
+  .wv-grid,
+  .wv-equipment {
+    display: block;
+  }
+  .wv-grid,
+  .wv-equipment {
+    font-size: 0;
+  }
+  .wv-grid figure,
+  .wv-equipment figure {
+    display: inline-block;
+    vertical-align: top;
+    box-sizing: border-box;
+    break-inside: avoid;
+    page-break-inside: avoid;
+    margin: 0 2% 12px 0;
+    overflow: visible;
+  }
+  .wv-grid figure {
+    width: 48%;
+  }
+  .wv-equipment figure {
+    width: 31%;
+  }
+  .wv-grid svg {
+    height: 150px;
+    width: 100%;
+  }
+  .wv-equipment svg {
+    height: 85px;
+    width: 100%;
+  }
+  .wv-equipment {
+    border: 0;
+    padding: 0;
+    margin-top: 20px;
+  }
+  .wv-equipment h3 {
+    font-size: 14px;
+  }
+  .wv-group h3,
+  .wv-spec,
+  .wv-equipment h3,
+  .wall-visualizer > .wv-note:first-of-type {
+    break-after: avoid;
+    page-break-after: avoid;
+  }
+  .wv-grid figcaption,
+  .wv-equipment figcaption {
+    break-before: avoid;
+    page-break-before: avoid;
+  }
+  .wv-note {
+    orphans: 3;
+    widows: 3;
+  }
+}
