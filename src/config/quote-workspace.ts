@@ -140,7 +140,7 @@ export function newQuote(catalog: Catalog): QuoteInput {
 export const wallVisualCopy = {
   title: "Your package at a glance",
   description:
-    "Each rectangle is one cabinet. All walls use the same scale so you can compare their sizes.",
+    "Panel totals are single-panel equivalents: each double cabinet counts as two panels. Each rectangle shows one physical cabinet. All walls use the same scale.",
   empty: "Enter panel counts to preview your walls.",
   disclaimer:
     "Equipment illustrations are representative, not exact product drawings or an installation plan. Accessory sizes are not to scale. Walls are shown separately; spacing and height above the floor are not represented.",

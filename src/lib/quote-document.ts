@@ -3,7 +3,13 @@ import { renderToStaticMarkup } from "react-dom/server";
 import { WallVisualizer } from "@/components/quotes/wall-visualizer";
 import visualStyles from "@/components/quotes/wall-visualizer.css?raw";
 import { type QuoteInput, costLabels } from "@/config/quote-workspace";
-import { calculateQuote, customerQuote, dimensions, usd } from "./quote-calculator";
+import {
+  calculateQuote,
+  customerQuote,
+  dimensions,
+  singlePanelCount,
+  usd,
+} from "./quote-calculator";
 import logo from "@/assets/axis-displays-logo.png";
 import styles from "@/components/quotes/quote-document.css?raw";
 
@@ -26,7 +32,7 @@ export function quoteDocument(q: QuoteInput) {
       : `${costLabels[q.processor]} × ${q.processors}`,
     q.cases ? "Flight cases included" : "Flight cases not included",
     ...(q.spareSingles || q.spareDoubles
-      ? [`Spare panels: ${q.spareSingles} single, ${q.spareDoubles} double`]
+      ? [`Spare panels: ${q.spareSingles + q.spareDoubles * 2} single-panel equivalents`]
       : []),
     "Standard panel power and data cables included",
     q.labor > 0 ? "Installation labor included" : "Installation labor not priced in this estimate",
@@ -41,7 +47,7 @@ ${visualStyles}</style></head><body>
     <section class="section"><h2>Your wall configuration</h2><div class="walls">${q.sections
       .map((s) => {
         const d = dimensions(s, q.catalog);
-        return `<article class="wall"><div><h3>${escape(s.name)}</h3><p>${s.quantity} ${s.quantity === 1 ? "wall" : "walls"} · 2.6mm pixel pitch</p></div><div class="size"><strong>${d.widthFt.toFixed(2)} × ${d.heightFt.toFixed(2)} <small>ft</small></strong><p>Per wall · ${s.wide} wide × ${s.tall} tall ${escape(s.type)} panels</p></div></article>`;
+        return `<article class="wall"><div><h3>${escape(s.name)}</h3><p>${s.quantity} ${s.quantity === 1 ? "wall" : "walls"} · 2.6mm pixel pitch</p></div><div class="size"><strong>${d.widthFt.toFixed(2)} × ${d.heightFt.toFixed(2)} <small>ft</small></strong><p>${singlePanelCount(s)} panels total · single-panel equivalents</p></div></article>`;
       })
       .join("")}</div></section>
     <section class="section">${renderToStaticMarkup(createElement(WallVisualizer, { sections: q.sections, catalog: q.catalog, quote: q }))}</section>

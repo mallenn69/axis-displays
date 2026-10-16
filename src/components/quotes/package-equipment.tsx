@@ -124,7 +124,7 @@ export function PackageEquipment({ quote: q }: { quote: QuoteInput }) {
     items.push({
       kind: "panel",
       label: "Spare panels",
-      detail: `${q.spareSingles} singles · ${q.spareDoubles} doubles`,
+      detail: `${q.spareSingles + 2 * q.spareDoubles} single-panel equivalents`,
     });
   items.push({
     kind: "cables",

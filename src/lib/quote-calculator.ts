@@ -12,6 +12,9 @@ export const usd = (n: number) =>
     currency: "USD",
     maximumFractionDigits: 2,
   }).format(n);
+export function singlePanelCount(s: WallSection) {
+  return s.wide * s.tall * s.quantity * (s.type === "double" ? 2 : 1);
+}
 export function dimensions(s: WallSection, c: Catalog) {
   const width = s.wide * (s.type === "single" ? c.singleWidthMm : c.doubleWidthMm);
   const height = s.tall * (s.type === "single" ? c.singleHeightMm : c.doubleHeightMm);
@@ -133,7 +136,7 @@ export function customerQuote(q: QuoteInput) {
     "",
     ...q.sections.map((s) => {
       const d = dimensions(s, q.catalog);
-      return `${s.name}${s.quantity > 1 ? ` (${s.quantity} walls)` : ""}: ${d.widthFt.toFixed(2)} × ${d.heightFt.toFixed(2)} ft per wall · ${s.wide} wide × ${s.tall} tall ${s.type} panels · 2.6mm`;
+      return `${s.name}${s.quantity > 1 ? ` (${s.quantity} walls)` : ""}: ${d.widthFt.toFixed(2)} × ${d.heightFt.toFixed(2)} ft per wall · ${singlePanelCount(s)} panels total (single-panel equivalents) · 2.6mm`;
     }),
     "",
     `Mounting: ${q.mount === "ground" ? "Ground-stacked" : "Hung"} (subject to site review)`,
@@ -142,7 +145,7 @@ export function customerQuote(q: QuoteInput) {
       : `${costLabels[q.processor]} × ${q.processors}`,
     q.cases ? "Flight cases included" : "Flight cases not included",
     q.spareSingles || q.spareDoubles
-      ? `Spare panels: ${q.spareSingles} single, ${q.spareDoubles} double`
+      ? `Spare panels: ${q.spareSingles + q.spareDoubles * 2} single-panel equivalents`
       : "",
     "Standard panel power and data cables included.",
     q.labor > 0

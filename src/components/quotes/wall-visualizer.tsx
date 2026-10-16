@@ -1,6 +1,6 @@
 import { PackageEquipment } from "./package-equipment";
 import { type Catalog, type WallSection, type QuoteInput } from "@/config/quote-workspace";
-import { dimensions } from "@/lib/quote-calculator";
+import { dimensions, singlePanelCount } from "@/lib/quote-calculator";
 import { wallVisualCopy } from "@/config/quote-workspace";
 import "./wall-visualizer.css";
 
@@ -47,13 +47,13 @@ export function WallVisualizer({
                 <h3>
                   {s.name}{" "}
                   <span>
-                    · {s.quantity} {s.quantity === 1 ? "wall" : "walls"} ·{" "}
-                    {s.wide * s.tall * s.quantity} panels total
+                    · {s.quantity} {s.quantity === 1 ? "wall" : "walls"} · {singlePanelCount(s)}{" "}
+                    panels total
                   </span>
                 </h3>
                 <p className="wv-spec">
                   {d.widthFt.toFixed(2)} × {d.heightFt.toFixed(2)} ft each · {s.wide} wide ×{" "}
-                  {s.tall} tall · {s.type} panels
+                  {s.tall} tall · {s.type} cabinets
                 </p>
                 <div className="wv-grid">
                   {Array.from({ length: s.quantity }, (_, instance) => (
@@ -61,7 +61,7 @@ export function WallVisualizer({
                       <svg
                         viewBox="0 0 320 250"
                         role="img"
-                        aria-label={`${s.name} ${instance + 1}: ${s.wide} by ${s.tall} ${s.type} panels, ${d.widthFt.toFixed(2)} by ${d.heightFt.toFixed(2)} feet`}
+                        aria-label={`${s.name} ${instance + 1}: ${s.wide} by ${s.tall} ${s.type} cabinets, ${d.widthFt.toFixed(2)} by ${d.heightFt.toFixed(2)} feet`}
                       >
                         <rect
                           x={x}
