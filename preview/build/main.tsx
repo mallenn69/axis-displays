@@ -1,4 +1,4 @@
 import { TrafficChoice } from "../../src/components/leads/traffic-choice";
 import { createRoot } from "react-dom/client";
 import { StageDesigner } from "../../src/components/builder/stage-designer";
-createRoot(document.getElementById("root")!).render(<><StageDesigner /><TrafficChoice /></>);
+createRoot(document.getElementById("root")!).render(<><StageDesigner /><TrafficChoice showPreferences={false} /></>);
