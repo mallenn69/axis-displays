@@ -38,11 +38,10 @@ export const churchFunnel = {
   ],
   budgets: ["Under $30,000", "$30,000–$50,000", "$50,000–$75,000", "$75,000+", "Not sure yet"],
   timelines: [
+    "Within 1 month",
     "Within 3 months",
-    "3–6 months",
-    "6–12 months",
-    "More than 12 months",
-    "Exploring / no date yet",
+    "Within 6 months",
+    "Still exploring — no date yet",
   ],
   involvement: [
     "I approve the purchase",
@@ -57,6 +56,8 @@ export const churchFunnel = {
   privacy:
     "We’ll use these details to respond to your project inquiry and arrange your consultation.",
 };
+
+export const quizBudgetMaximum = 300000;
 
 export const quizCopy = {
   intro: "See how an LED wall could work in your church. Then tell us what you have in mind.",

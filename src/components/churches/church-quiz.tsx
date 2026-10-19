@@ -4,6 +4,7 @@ import {
   churchFunnel as copy,
   churchQuestions as questions,
   quizCopy,
+  quizBudgetMaximum,
 } from "@/config/church-funnel";
 import { states, MAX_PHOTO_BYTES } from "@/config/leads";
 import { startPixel, trackSavedLead } from "@/lib/meta-pixel";
@@ -87,7 +88,7 @@ export function ChurchQuiz() {
       [
         "Church consultation quiz — /churches/quiz/",
         `Goal: ${answers["goal"]}`,
-        `Budget: $${Number(answers["budget"]).toLocaleString("en-US")}${answers["budget"] === "150000" ? "+" : ""}`,
+        `Budget: $${Number(answers["budget"]).toLocaleString("en-US")}${Number(answers["budget"]) === quizBudgetMaximum ? "+" : ""}`,
         `Timeline: ${answers["timeline"]}`,
         `Role: ${answers["role"]}`,
         `Decision involvement: ${answers["involvement"]}`,
@@ -176,7 +177,7 @@ export function ChurchQuiz() {
                     {item.kind === "photo"
                       ? photo?.name || "No photo added"
                       : item.kind === "budget"
-                        ? `$${Number(answers["budget"]).toLocaleString("en-US")}${answers["budget"] === "150000" ? "+" : ""}`
+                        ? `$${Number(answers["budget"]).toLocaleString("en-US")}${Number(answers["budget"]) === quizBudgetMaximum ? "+" : ""}`
                         : answers[item.id]}
                   </dd>
                   <button
@@ -240,21 +241,21 @@ export function ChurchQuiz() {
                   <output htmlFor="budget-range">
                     {answers["budget"] === "Not sure yet"
                       ? "Not sure yet"
-                      : `$${budgetValue.toLocaleString("en-US")}${budgetValue === 150000 ? "+" : ""}`}
+                      : `$${budgetValue.toLocaleString("en-US")}${budgetValue === quizBudgetMaximum ? "+" : ""}`}
                   </output>
                   <input
                     id="budget-range"
                     aria-label="Project budget"
                     type="range"
                     min="0"
-                    max="150000"
+                    max={quizBudgetMaximum}
                     step="5000"
                     value={budgetValue}
                     onChange={(e) => answer("budget", e.target.value)}
                   />
                   <div className="cq-range-labels">
                     <span>$0</span>
-                    <span>$150,000+</span>
+                    <span>${quizBudgetMaximum.toLocaleString("en-US")}+</span>
                   </div>
                   <button
                     type="button"
@@ -262,7 +263,7 @@ export function ChurchQuiz() {
                     onClick={() => answer("budget", String(budgetValue))}
                   >
                     Use ${budgetValue.toLocaleString("en-US")}
-                    {budgetValue === 150000 ? "+" : ""} as my budget
+                    {budgetValue === quizBudgetMaximum ? "+" : ""} as my budget
                   </button>
                   <button
                     type="button"

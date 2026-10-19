@@ -38,7 +38,7 @@ function complete(photo?: File) {
   start();
   fireEvent.click(screen.getByRole("button", { name: "Use $30,000 as my budget" }));
   next();
-  choose("3–6 months");
+  choose("Within 3 months");
   choose("Production / technical director");
   choose("I recommend options to leadership");
   fill("Example Church");
