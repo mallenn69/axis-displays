@@ -35,7 +35,7 @@ it.each([['localhost', '/start/'], ['axisledwalls.com', '/']])('does not initial
  const m = await import('../lib/meta-pixel'); m.startPixel(); expect(window.fbq).toBeUndefined();
 });
 
-it.each(['/compare/', '/build/'])('initializes on %s', async pathname => {
+it.each(['/compare/', '/build/', '/churches/', '/churches/quiz/'])('initializes on %s', async pathname => {
  vi.stubGlobal('location', {hostname:'axisledwalls.com',pathname});
  const { startPixel } = await import('../lib/meta-pixel');
  startPixel();

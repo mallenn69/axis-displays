@@ -1,9 +1,6 @@
 * {
   box-sizing: border-box;
 }
-html {
-  scroll-behavior: smooth;
-}
 body {
   margin: 0;
   background: #080f13;
@@ -13,36 +10,28 @@ body {
 .church-funnel {
   max-width: 1180px;
   margin: auto;
-  padding: 0 32px;
+  padding: 0 32px 32px;
 }
 .church-funnel header {
-  height: 94px;
+  height: 76px;
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 24px;
   border-bottom: 1px solid #243137;
 }
-.church-funnel header img,
-.church-funnel footer img {
-  width: 140px;
+.church-funnel header img {
+  width: 128px;
   height: auto;
+  display: block;
 }
 .church-funnel a {
   color: inherit;
 }
-.church-funnel header span,
-.church-funnel header > a:last-child {
-  font-size: 11px;
-  letter-spacing: 1px;
-}
 .church-funnel header span {
   color: #9dafb5;
-}
-.cf-hero {
-  text-align: center;
-  max-width: 850px;
-  margin: 70px auto 42px;
+  font-size: 10px;
+  letter-spacing: 2px;
 }
 .cf-eyebrow {
   color: #65d8ce;
@@ -51,23 +40,23 @@ body {
   letter-spacing: 2px;
   line-height: 1.8;
 }
-.cf-hero h1 {
-  font-size: clamp(40px, 6vw, 72px);
-  line-height: 1.04;
-  letter-spacing: -3px;
-  margin: 20px 0;
+.cf-watch-content {
+  text-align: center;
+  max-width: 900px;
+  margin: 26px auto 0;
 }
-.cf-description {
-  font-size: 19px;
-  line-height: 1.7;
+.cf-watch h1 {
+  font-size: clamp(30px, 4vw, 48px);
+  line-height: 1.08;
+  letter-spacing: -1.7px;
+  margin: 10px 0;
+}
+.cf-watch-intro {
+  font-size: 15px;
+  line-height: 1.5;
   color: #b0c1c5;
+  margin: 12px auto 22px;
   max-width: 650px;
-  margin: 24px auto;
-}
-.cf-budget {
-  font-size: 13px;
-  color: #d8e5e7;
-  margin: 24px 0;
 }
 .cf-button {
   border: 0;
@@ -75,8 +64,9 @@ body {
   background: #40ddd0;
   color: #062322 !important;
   text-decoration: none;
-  font-size: 15px;
-  font-weight: 700;
+  font:
+    700 15px Arial,
+    sans-serif;
   padding: 17px 24px;
   display: inline-flex;
   justify-content: center;
@@ -85,18 +75,20 @@ body {
   min-height: 52px;
   cursor: pointer;
 }
+.cf-button:hover {
+  background: #75eadf;
+}
 .cf-button:disabled {
   opacity: 0.5;
-  cursor: wait;
-}
-.cf-video-section {
-  margin: 46px 0 68px;
+  cursor: default;
 }
 .cf-video {
+  width: min(100%, 800px, 82vh);
   aspect-ratio: 16/9;
+  margin: 0 auto 22px;
   background: radial-gradient(ellipse at 50% 100%, #153e43, #0c191f 65%);
   border: 1px solid #2d4c52;
-  border-radius: 14px;
+  border-radius: 12px;
   overflow: hidden;
   display: grid;
   place-items: center;
@@ -120,172 +112,22 @@ body {
 .cf-video-placeholder {
   max-width: 600px;
   text-align: center;
-  padding: 36px;
+  padding: 28px;
   position: relative;
 }
 .cf-video-placeholder > span {
-  font-size: 10px;
+  font-size: 9px;
   letter-spacing: 3px;
   color: #69cfc6;
 }
 .cf-video-placeholder h2 {
-  font-size: clamp(22px, 4vw, 46px);
+  font-size: clamp(20px, 3vw, 36px);
   line-height: 1.15;
   letter-spacing: -1px;
 }
 .cf-video-placeholder p {
   color: #a4b9bd;
-  font-size: 13px;
-}
-.cf-video-copy {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 0 60px;
-  margin: 28px 0;
-}
-.cf-video-copy > span {
-  grid-column: 1/-1;
-}
-.cf-video-copy h2 {
-  font-size: 28px;
-  letter-spacing: -1px;
-  margin: 12px 0;
-}
-.cf-video-copy p {
-  line-height: 1.7;
-  color: #9fb4ba;
-  font-size: 14px;
-}
-.cf-proof {
-  display: grid;
-  grid-template-columns: 1.3fr 1fr;
-  gap: 48px;
-  align-items: center;
-  border-top: 1px solid #25383f;
-  padding: 54px 0;
-}
-.cf-proof img {
-  width: 100%;
-  border-radius: 10px;
-}
-.cf-proof h2,
-.cf-process > h2,
-.cf-application h2 {
-  font-size: 36px;
-  line-height: 1.12;
-  letter-spacing: -1px;
-}
-.cf-proof p:not(.cf-eyebrow) {
-  color: #a7b9bf;
-  font-size: 15px;
-  line-height: 1.7;
-}
-.cf-process {
-  padding: 40px 0 64px;
-}
-.cf-process > div {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 24px;
-  margin-top: 32px;
-}
-.cf-process article {
-  border-top: 1px solid #38545b;
-  padding-top: 20px;
-}
-.cf-process article > span {
   font-size: 12px;
-  color: #58cfc4;
-}
-.cf-process h3 {
-  font-size: 18px;
-  line-height: 1.35;
-}
-.cf-process article p {
-  font-size: 13px;
-  line-height: 1.7;
-  color: #9eb2b8;
-}
-.cf-application {
-  scroll-margin-top: 24px;
-  padding: 56px 0 80px;
-  border-top: 1px solid #25383f;
-  display: grid;
-  grid-template-columns: 0.85fr 1.15fr;
-  gap: 70px;
-  align-items: start;
-}
-.cf-application aside > p:not(.cf-eyebrow) {
-  color: #acbdc2;
-  line-height: 1.7;
-}
-.cf-application ul {
-  padding-left: 20px;
-  color: #dce9e8;
-  font-size: 14px;
-  line-height: 2;
-}
-.cf-form-card {
-  background: #101d24;
-  border: 1px solid #2b434c;
-  padding: 32px;
-  border-radius: 12px;
-}
-.cf-progress {
-  font-size: 11px;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  color: #55d1c5;
-  margin: 0 0 26px;
-}
-.cf-form-card fieldset {
-  border: 0;
-  margin: 0;
-  padding: 0;
-  min-width: 0;
-}
-.cf-form-card fieldset[hidden] {
-  display: none;
-}
-.cf-form-card legend {
-  font-size: 21px;
-  font-weight: 700;
-  line-height: 1.35;
-  margin: 0 0 24px;
-}
-.cf-form-card label {
-  display: flex;
-  flex-direction: column;
-  gap: 9px;
-  font-size: 13px;
-  font-weight: 600;
-  margin-bottom: 20px;
-}
-.cf-form-card input,
-.cf-form-card select,
-.cf-form-card textarea {
-  width: 100%;
-  min-width: 0;
-  border: 1px solid #39535c;
-  border-radius: 6px;
-  padding: 13px;
-  background: #0a141a;
-  color: #f0f6f6;
-  font: 16px Arial;
-  min-height: 48px;
-}
-.cf-form-card textarea {
-  resize: vertical;
-  line-height: 1.5;
-}
-.cf-fields {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 18px;
-}
-.cf-form-card .cf-button {
-  width: 100%;
-  margin-top: 8px;
 }
 .cf-small {
   font-size: 12px !important;
@@ -299,113 +141,303 @@ body {
   color: #bdd1d5;
   padding: 16px 0;
   cursor: pointer;
-}
-.cf-alternative {
-  background: #182d33;
-  padding: 20px;
-  border-radius: 8px;
-}
-.cf-alternative h3 {
-  margin: 0 0 12px;
-}
-.cf-alternative p {
+  font: inherit;
   font-size: 14px;
-  color: #c0d1d5;
-  line-height: 1.6;
 }
-.cf-alternative a {
-  font-size: 14px;
-  color: #70e2d6;
+.cf-back:disabled {
+  opacity: 0.5;
 }
 .cf-honey {
   position: absolute;
-  left: -9999px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
 }
 .cf-error {
-  color: #ffb3ac;
+  color: #ffb3ac !important;
   font-size: 14px;
-}
-.cf-success p {
-  line-height: 1.7;
 }
 .church-funnel :focus-visible {
   outline: 2px solid #58e2d4;
   outline-offset: 4px;
 }
-.church-funnel footer {
-  border-top: 1px solid #25383f;
-  padding: 28px 0;
+.church-funnel h1:focus {
+  outline: none;
+}
+.cq-shell {
+  max-width: 660px;
+  margin: 48px auto;
+}
+.cq-progress {
+  margin-bottom: 36px;
+}
+.cq-progress p {
   display: flex;
   justify-content: space-between;
-  align-items: center;
-  gap: 20px;
-  font-size: 11px;
-  color: #9fb4ba;
+  gap: 12px;
+  font-size: 12px;
+  color: #65d8ce;
 }
-@media (max-width: 760px) {
+.cq-progress span {
+  color: #94aab0;
+}
+.cq-progress progress {
+  appearance: none;
+  border: none;
+  display: block;
+  height: 4px;
+  width: 100%;
+  border-radius: 4px;
+  background: #25363b;
+  overflow: hidden;
+}
+.cq-progress progress::-webkit-progress-bar {
+  background: #25363b;
+}
+.cq-progress progress::-webkit-progress-value {
+  background: #40ddd0;
+}
+.cq-progress progress::-moz-progress-bar {
+  background: #40ddd0;
+}
+.cq-card h1 {
+  font-size: clamp(28px, 4vw, 38px);
+  line-height: 1.15;
+  letter-spacing: -1.2px;
+  margin: 0 0 14px;
+}
+.cq-card > p {
+  color: #a8bdc2;
+  line-height: 1.6;
+  margin: 0 0 26px;
+}
+.cq-card > .cf-small {
+  margin-top: 20px;
+}
+.cq-card > input,
+.cq-card > select,
+.cq-card > textarea {
+  width: 100%;
+  min-width: 0;
+  border: 1px solid #39535c;
+  border-radius: 7px;
+  padding: 17px;
+  background: #101e25;
+  color: #f0f6f6;
+  font: 18px Arial;
+  min-height: 56px;
+  margin-top: 12px;
+}
+.cq-card textarea {
+  resize: vertical;
+  line-height: 1.5;
+}
+.cq-options {
+  display: grid;
+  gap: 10px;
+  margin-top: 28px;
+}
+.cq-options label {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 18px;
+  border: 1px solid #30464e;
+  border-radius: 7px;
+  background: #101c23;
+  cursor: pointer;
+  line-height: 1.4;
+  font-size: 15px;
+}
+.cq-options label:hover {
+  border-color: #69958f;
+}
+.cq-options label.selected {
+  border-color: #40ddd0;
+  background: #132e31;
+}
+.cq-options input {
+  accent-color: #40ddd0;
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+  margin: 0;
+}
+.cq-actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  margin-top: 30px;
+}
+.cq-actions > .cf-button {
+  margin-left: auto;
+}
+.cq-budget {
+  margin-top: 32px;
+}
+.cq-budget output {
+  font-size: 48px;
+  font-weight: 700;
+  letter-spacing: -2px;
+  display: block;
+  margin-bottom: 22px;
+}
+.cq-budget input[type="range"] {
+  width: 100%;
+  height: 32px;
+  cursor: pointer;
+  accent-color: #40ddd0;
+  margin: 0;
+}
+.cq-range-labels {
+  display: flex;
+  justify-content: space-between;
+  color: #9eb5bd;
+  font-size: 12px;
+  margin-bottom: 24px;
+}
+.cq-budget-confirm {
+  color: #70e2d6;
+  background: #132b30;
+  border: 1px solid #386468;
+  border-radius: 6px;
+  padding: 14px 18px;
+  font-size: 14px;
+  cursor: pointer;
+  margin-right: 24px;
+}
+.cq-budget .cf-small {
+  margin-top: 20px;
+}
+.cq-photo {
+  padding: 24px;
+  border: 1px dashed #456069;
+  border-radius: 8px;
+  margin-top: 28px;
+  overflow-wrap: anywhere;
+}
+.cq-photo input {
+  max-width: 100%;
+  font-size: 14px;
+}
+.cq-photo input::file-selector-button {
+  background: #193b3d;
+  border: 1px solid #497476;
+  border-radius: 4px;
+  color: #e4faf8;
+  padding: 12px;
+  margin-right: 10px;
+  cursor: pointer;
+}
+.cq-photo p {
+  margin: 14px 0 0;
+  color: #a8bdc2;
+}
+.cq-photo .cf-back {
+  margin-left: 16px;
+}
+.cq-review {
+  margin: 28px 0;
+}
+.cq-review > div {
+  position: relative;
+  padding: 18px 58px 18px 0;
+  border-top: 1px solid #25383f;
+  overflow-wrap: anywhere;
+}
+.cq-review dt {
+  color: #92aab1;
+  font-size: 12px;
+  line-height: 1.5;
+}
+.cq-review dd {
+  margin: 6px 0 0;
+  font-size: 15px;
+  line-height: 1.5;
+  white-space: pre-wrap;
+}
+.cq-review button {
+  position: absolute;
+  top: 22px;
+  right: 0;
+  border: none;
+  background: transparent;
+  color: #65d8ce;
+  font-size: 13px;
+  padding: 8px;
+  cursor: pointer;
+}
+.cq-card[role="status"] > .cf-back {
+  display: block;
+}
+@media (max-width: 600px) {
   .church-funnel {
-    padding: 0 20px;
+    padding: 0 20px 24px;
   }
   .church-funnel header {
-    height: 78px;
-  }
-  .church-funnel header span {
-    display: none;
+    height: 68px;
+    gap: 12px;
   }
   .church-funnel header img {
-    width: 116px;
+    width: 112px;
   }
-  .cf-hero {
-    margin-top: 42px;
+  .church-funnel header span {
+    font-size: 8px;
+    letter-spacing: 1px;
   }
-  .cf-hero h1 {
-    letter-spacing: -1.8px;
+  .cf-watch-content {
+    margin-top: 32px;
   }
-  .cf-description {
-    font-size: 17px;
+  .cf-watch h1 {
+    letter-spacing: -1px;
+    font-size: 34px;
+  }
+  .cf-watch-intro {
+    font-size: 14px;
+    margin: 16px auto 26px;
+  }
+  .cf-video {
+    width: 100%;
   }
   .cf-video-placeholder {
-    padding: 20px;
+    padding: 18px;
+  }
+  .cf-video-placeholder h2 {
+    margin: 12px 0;
+    font-size: 23px;
   }
   .cf-video-placeholder p {
+    font-size: 10px;
+    line-height: 1.5;
+    margin-bottom: 0;
+  }
+  .cf-video-placeholder > span {
+    font-size: 8px;
+  }
+  .cf-watch .cf-button {
+    width: 100%;
+  }
+  .cq-shell {
+    margin: 28px auto;
+  }
+  .cq-progress {
+    margin-bottom: 30px;
+  }
+  .cq-progress p {
     font-size: 11px;
   }
-  .cf-video-copy,
-  .cf-proof,
-  .cf-application {
-    grid-template-columns: 1fr;
-    gap: 20px;
+  .cq-options label {
+    padding: 16px;
   }
-  .cf-proof {
-    padding: 32px 0;
+  .cq-budget output {
+    font-size: 42px;
   }
-  .cf-process > div {
-    grid-template-columns: 1fr 1fr;
+  .cq-budget-confirm {
+    margin-right: 14px;
   }
-  .cf-application {
-    padding: 32px 0 48px;
-  }
-  .cf-form-card {
-    padding: 24px 20px;
-  }
-  .cf-fields {
-    grid-template-columns: 1fr;
-    gap: 0;
-  }
-  .cf-application h2,
-  .cf-proof h2,
-  .cf-process > h2 {
-    font-size: 30px;
-  }
-  .church-funnel footer {
-    flex-wrap: wrap;
-  }
-  .cf-video-section {
-    margin-bottom: 32px;
-  }
-}
-@media (prefers-reduced-motion: reduce) {
-  html {
-    scroll-behavior: auto;
+  .cq-photo {
+    padding: 18px;
   }
 }
