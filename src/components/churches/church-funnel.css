@@ -1,0 +1,411 @@
+* {
+  box-sizing: border-box;
+}
+html {
+  scroll-behavior: smooth;
+}
+body {
+  margin: 0;
+  background: #080f13;
+  color: #edf6f5;
+  font-family: Arial, Helvetica, sans-serif;
+}
+.church-funnel {
+  max-width: 1180px;
+  margin: auto;
+  padding: 0 32px;
+}
+.church-funnel header {
+  height: 94px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  border-bottom: 1px solid #243137;
+}
+.church-funnel header img,
+.church-funnel footer img {
+  width: 140px;
+  height: auto;
+}
+.church-funnel a {
+  color: inherit;
+}
+.church-funnel header span,
+.church-funnel header > a:last-child {
+  font-size: 11px;
+  letter-spacing: 1px;
+}
+.church-funnel header span {
+  color: #9dafb5;
+}
+.cf-hero {
+  text-align: center;
+  max-width: 850px;
+  margin: 70px auto 42px;
+}
+.cf-eyebrow {
+  color: #65d8ce;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  line-height: 1.8;
+}
+.cf-hero h1 {
+  font-size: clamp(40px, 6vw, 72px);
+  line-height: 1.04;
+  letter-spacing: -3px;
+  margin: 20px 0;
+}
+.cf-description {
+  font-size: 19px;
+  line-height: 1.7;
+  color: #b0c1c5;
+  max-width: 650px;
+  margin: 24px auto;
+}
+.cf-budget {
+  font-size: 13px;
+  color: #d8e5e7;
+  margin: 24px 0;
+}
+.cf-button {
+  border: 0;
+  border-radius: 7px;
+  background: #40ddd0;
+  color: #062322 !important;
+  text-decoration: none;
+  font-size: 15px;
+  font-weight: 700;
+  padding: 17px 24px;
+  display: inline-flex;
+  justify-content: center;
+  gap: 22px;
+  align-items: center;
+  min-height: 52px;
+  cursor: pointer;
+}
+.cf-button:disabled {
+  opacity: 0.5;
+  cursor: wait;
+}
+.cf-video-section {
+  margin: 46px 0 68px;
+}
+.cf-video {
+  aspect-ratio: 16/9;
+  background: radial-gradient(ellipse at 50% 100%, #153e43, #0c191f 65%);
+  border: 1px solid #2d4c52;
+  border-radius: 14px;
+  overflow: hidden;
+  display: grid;
+  place-items: center;
+  position: relative;
+}
+.cf-video:before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image:
+    linear-gradient(#72c9c80a 1px, transparent 1px),
+    linear-gradient(90deg, #72c9c80a 1px, transparent 1px);
+  background-size: 48px 48px;
+}
+.cf-video video {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+.cf-video-placeholder {
+  max-width: 600px;
+  text-align: center;
+  padding: 36px;
+  position: relative;
+}
+.cf-video-placeholder > span {
+  font-size: 10px;
+  letter-spacing: 3px;
+  color: #69cfc6;
+}
+.cf-video-placeholder h2 {
+  font-size: clamp(22px, 4vw, 46px);
+  line-height: 1.15;
+  letter-spacing: -1px;
+}
+.cf-video-placeholder p {
+  color: #a4b9bd;
+  font-size: 13px;
+}
+.cf-video-copy {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0 60px;
+  margin: 28px 0;
+}
+.cf-video-copy > span {
+  grid-column: 1/-1;
+}
+.cf-video-copy h2 {
+  font-size: 28px;
+  letter-spacing: -1px;
+  margin: 12px 0;
+}
+.cf-video-copy p {
+  line-height: 1.7;
+  color: #9fb4ba;
+  font-size: 14px;
+}
+.cf-proof {
+  display: grid;
+  grid-template-columns: 1.3fr 1fr;
+  gap: 48px;
+  align-items: center;
+  border-top: 1px solid #25383f;
+  padding: 54px 0;
+}
+.cf-proof img {
+  width: 100%;
+  border-radius: 10px;
+}
+.cf-proof h2,
+.cf-process > h2,
+.cf-application h2 {
+  font-size: 36px;
+  line-height: 1.12;
+  letter-spacing: -1px;
+}
+.cf-proof p:not(.cf-eyebrow) {
+  color: #a7b9bf;
+  font-size: 15px;
+  line-height: 1.7;
+}
+.cf-process {
+  padding: 40px 0 64px;
+}
+.cf-process > div {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+  margin-top: 32px;
+}
+.cf-process article {
+  border-top: 1px solid #38545b;
+  padding-top: 20px;
+}
+.cf-process article > span {
+  font-size: 12px;
+  color: #58cfc4;
+}
+.cf-process h3 {
+  font-size: 18px;
+  line-height: 1.35;
+}
+.cf-process article p {
+  font-size: 13px;
+  line-height: 1.7;
+  color: #9eb2b8;
+}
+.cf-application {
+  scroll-margin-top: 24px;
+  padding: 56px 0 80px;
+  border-top: 1px solid #25383f;
+  display: grid;
+  grid-template-columns: 0.85fr 1.15fr;
+  gap: 70px;
+  align-items: start;
+}
+.cf-application aside > p:not(.cf-eyebrow) {
+  color: #acbdc2;
+  line-height: 1.7;
+}
+.cf-application ul {
+  padding-left: 20px;
+  color: #dce9e8;
+  font-size: 14px;
+  line-height: 2;
+}
+.cf-form-card {
+  background: #101d24;
+  border: 1px solid #2b434c;
+  padding: 32px;
+  border-radius: 12px;
+}
+.cf-progress {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: #55d1c5;
+  margin: 0 0 26px;
+}
+.cf-form-card fieldset {
+  border: 0;
+  margin: 0;
+  padding: 0;
+  min-width: 0;
+}
+.cf-form-card fieldset[hidden] {
+  display: none;
+}
+.cf-form-card legend {
+  font-size: 21px;
+  font-weight: 700;
+  line-height: 1.35;
+  margin: 0 0 24px;
+}
+.cf-form-card label {
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+  font-size: 13px;
+  font-weight: 600;
+  margin-bottom: 20px;
+}
+.cf-form-card input,
+.cf-form-card select,
+.cf-form-card textarea {
+  width: 100%;
+  min-width: 0;
+  border: 1px solid #39535c;
+  border-radius: 6px;
+  padding: 13px;
+  background: #0a141a;
+  color: #f0f6f6;
+  font: 16px Arial;
+  min-height: 48px;
+}
+.cf-form-card textarea {
+  resize: vertical;
+  line-height: 1.5;
+}
+.cf-fields {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px;
+}
+.cf-form-card .cf-button {
+  width: 100%;
+  margin-top: 8px;
+}
+.cf-small {
+  font-size: 12px !important;
+  font-weight: 400;
+  line-height: 1.6;
+  color: #9eb5bd;
+}
+.cf-back {
+  border: 0;
+  background: transparent;
+  color: #bdd1d5;
+  padding: 16px 0;
+  cursor: pointer;
+}
+.cf-alternative {
+  background: #182d33;
+  padding: 20px;
+  border-radius: 8px;
+}
+.cf-alternative h3 {
+  margin: 0 0 12px;
+}
+.cf-alternative p {
+  font-size: 14px;
+  color: #c0d1d5;
+  line-height: 1.6;
+}
+.cf-alternative a {
+  font-size: 14px;
+  color: #70e2d6;
+}
+.cf-honey {
+  position: absolute;
+  left: -9999px;
+}
+.cf-error {
+  color: #ffb3ac;
+  font-size: 14px;
+}
+.cf-success p {
+  line-height: 1.7;
+}
+.church-funnel :focus-visible {
+  outline: 2px solid #58e2d4;
+  outline-offset: 4px;
+}
+.church-funnel footer {
+  border-top: 1px solid #25383f;
+  padding: 28px 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+  font-size: 11px;
+  color: #9fb4ba;
+}
+@media (max-width: 760px) {
+  .church-funnel {
+    padding: 0 20px;
+  }
+  .church-funnel header {
+    height: 78px;
+  }
+  .church-funnel header span {
+    display: none;
+  }
+  .church-funnel header img {
+    width: 116px;
+  }
+  .cf-hero {
+    margin-top: 42px;
+  }
+  .cf-hero h1 {
+    letter-spacing: -1.8px;
+  }
+  .cf-description {
+    font-size: 17px;
+  }
+  .cf-video-placeholder {
+    padding: 20px;
+  }
+  .cf-video-placeholder p {
+    font-size: 11px;
+  }
+  .cf-video-copy,
+  .cf-proof,
+  .cf-application {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  .cf-proof {
+    padding: 32px 0;
+  }
+  .cf-process > div {
+    grid-template-columns: 1fr 1fr;
+  }
+  .cf-application {
+    padding: 32px 0 48px;
+  }
+  .cf-form-card {
+    padding: 24px 20px;
+  }
+  .cf-fields {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+  .cf-application h2,
+  .cf-proof h2,
+  .cf-process > h2 {
+    font-size: 30px;
+  }
+  .church-funnel footer {
+    flex-wrap: wrap;
+  }
+  .cf-video-section {
+    margin-bottom: 32px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
